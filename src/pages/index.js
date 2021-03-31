@@ -1,4 +1,5 @@
 export * from './Favorites';
 export * from './Home';
 export * from './Login';
-export * from './Product';
+export * from './Welcome';
+export * from './Details';

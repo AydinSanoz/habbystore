@@ -5,7 +5,7 @@ import {home} from '../styles';
 export function Home({navigation}) {
   return (
     <SafeAreaView style={home.container}>
-      <View>
+      <View style={home.container}>
         <Text>Home</Text>
         <Button
           title="Go to Products"

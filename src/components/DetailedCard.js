@@ -11,20 +11,17 @@ import {
 import {dCard, title} from './styles';
 
 export function DetailedCard({item}) {
-  console.log(
-    '🚀 ~ file: DetailedCard.js ~ line 11 ~ DetailedCard ~ item',
-    item.images[0].src,
-  );
   return (
-    <TouchableOpacity style={dCard.container}>
-      {item.images.map(image => (
-        <>
-          <ScrollView key={(_, index) => index.toString()} horizontal>
-            <Image style={dCard.img} source={{uri: image.src}} />
-          </ScrollView>
+    <View style={dCard.container}>
+      {!item.images[0]?.thumbnail ? (
+        <ActivityIndicator size="large" color="blue" />
+      ) : (
+        <ImageBackground
+          style={dCard.img}
+          source={{uri: item.images[0].thumbnail}}>
           <Text style={title.text}>{item.name}</Text>
-        </>
-      ))}
-    </TouchableOpacity>
+        </ImageBackground>
+      )}
+    </View>
   );
 }

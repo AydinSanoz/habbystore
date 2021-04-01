@@ -24,9 +24,7 @@ export function CategoryCard({item, navigation}) {
               ? require('../assets/habby-logo.png')
               : {uri: item?.image.src}
           }>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={title.text}>{item?.name}</Text>
-          </View>
+          <Text style={title.text}>{item?.name}</Text>
         </ImageBackground>
       </TouchableOpacity>
     </View>

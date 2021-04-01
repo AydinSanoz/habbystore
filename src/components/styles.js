@@ -1,22 +1,24 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, Platform} from 'react-native';
 
 export const searchBarStyles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: Platform.OS == 'ios' ? 10 : 5,
     borderRadius: 10,
-    backgroundColor: '#d3b8ae',
-    width: Dimensions.get('window').width * 0.8,
-    margin: 10,
+    backgroundColor: '#81d4fa',
+    width: Dimensions.get('window').width * 0.95,
     alignSelf: 'center',
+    marginBottom: 10,
   },
   input: {
-    //null,
+    fontSize: 20,
   },
 });
 export const pCard = StyleSheet.create({
   container: {
-    margin: 10,
     borderWidth: 1,
+    borderColor: '#c3fdff',
+    width: Dimensions.get('window').width * 0.45,
+    margin: 10,
   },
   img: {
     height: 250,
@@ -26,8 +28,8 @@ export const pCard = StyleSheet.create({
 });
 export const cCard = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     margin: 10,
-    borderWidth: 1,
   },
   img: {
     resizeMode: 'contain',
@@ -38,11 +40,11 @@ export const cCard = StyleSheet.create({
 });
 export const dCard = StyleSheet.create({
   container: {
-    margin: 10,
     borderWidth: 1,
+    borderColor: '#c3fdff',
+    margin: 10,
   },
   img: {
-    width: 200,
     height: 250,
     resizeMode: 'contain',
     justifyContent: 'flex-end',
@@ -50,23 +52,23 @@ export const dCard = StyleSheet.create({
 });
 export const category = StyleSheet.create({
   container: {
-    borderBottomColor: '#000',
+    borderBottomColor: '#c3fdff',
     borderBottomWidth: 2,
+    paddingBottom: 10,
+    margin: 10,
   },
 });
 export const product = StyleSheet.create({
   container: {
     flex: 2,
-    margin: 10,
   },
 });
 export const header = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
     padding: 10,
-    margin: 10,
   },
 });
 export const title = StyleSheet.create({
@@ -75,6 +77,6 @@ export const title = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 20,
-    backgroundColor: '#00000030',
+    backgroundColor: '#5d99c695',
   },
 });

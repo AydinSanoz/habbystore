@@ -7,8 +7,8 @@ export const SearchBar = props => {
     <View style={searchBarStyles.container}>
       <TextInput
         style={searchBarStyles.input}
-        onChangeText={props.onText}
-        placeholder={props.title}
+        onChangeText={props.onChangeText}
+        placeholder={props.placeholder}
         placeholderTextColor={props.color}
       />
     </View>

@@ -10,7 +10,7 @@ export function Categories({navigation}) {
   useEffect(() => {
     axios
       .get('https://habby.store/wp-json/wc/store/products/categories')
-      .then(res => setCategories(res.data))
+      .then(({data}) => setCategories(data))
       .catch(err => console.log(err));
   }, []);
 
@@ -21,7 +21,7 @@ export function Categories({navigation}) {
     <View style={category.container}>
       <Text style={header.text}>CATEGORIES</Text>
       {!categories.length ? (
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" color="#c3fdff" />
       ) : (
         <FlatList
           data={categories}

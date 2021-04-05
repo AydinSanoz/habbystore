@@ -5,18 +5,30 @@ import axios from 'axios';
 import {category, header} from './styles';
 import {useSelector} from 'react-redux';
 
+let originalList = [];
 export function Categories({navigation}) {
   const [categories, setCategories] = useState([]);
   const {value} = useSelector(state => state.search);
 
-  console.log('🚀 ~ file: Categories.js ~ line 14 ~ Categories ~ value', value);
-
   useEffect(() => {
     axios
       .get('https://habby.store/wp-json/wc/store/products/categories')
-      .then(({data}) => setCategories(data))
+      .then(({data}) => {
+        setCategories(data);
+        originalList = data;
+      })
       .catch(err => console.log(err));
   }, []);
+
+  useEffect(() => {
+    console.log('inputVal', value);
+    const filteredData = originalList.filter(data => {
+      const inputVal = value.toLowerCase();
+      const name = data.name.toLowerCase();
+      return name.indexOf(inputVal) > -1;
+    });
+    setCategories(filteredData);
+  }, [value]);
 
   const renderItem = ({item}) => (
     <CategoryCard item={item} navigation={navigation} />

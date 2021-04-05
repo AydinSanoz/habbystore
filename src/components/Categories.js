@@ -3,9 +3,13 @@ import {View, FlatList, Text, ActivityIndicator} from 'react-native';
 import {CategoryCard} from './';
 import axios from 'axios';
 import {category, header} from './styles';
+import {useSelector} from 'react-redux';
 
 export function Categories({navigation}) {
   const [categories, setCategories] = useState([]);
+  const {value} = useSelector(state => state.search);
+
+  console.log('🚀 ~ file: Categories.js ~ line 14 ~ Categories ~ value', value);
 
   useEffect(() => {
     axios

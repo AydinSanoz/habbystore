@@ -15,7 +15,9 @@ export function Details({navigation, route}) {
       .catch(err => console.log(err));
   }, [id]);
 
-  const renderItem = ({item}) => <DetailedCard item={item} />;
+  const renderItem = ({item}) => (
+    <DetailedCard item={item} navigation={navigation} />
+  );
 
   return (
     <SafeAreaView style={layout.container}>

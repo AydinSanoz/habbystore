@@ -4,7 +4,7 @@ export const searchBarStyles = StyleSheet.create({
   container: {
     padding: Platform.OS == 'ios' ? 10 : 5,
     borderRadius: 10,
-    backgroundColor: '#81d4fa',
+    backgroundColor: '#80deea',
     width: Dimensions.get('window').width * 0.95,
     alignSelf: 'center',
     marginBottom: 10,
@@ -28,7 +28,8 @@ export const pCard = StyleSheet.create({
 });
 export const cCard = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    borderColor: '#80deea',
+    borderWidth: 2,
     margin: 10,
   },
   img: {
@@ -69,6 +70,8 @@ export const header = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     padding: 10,
+    color: '#b4ffff',
+    backgroundColor: '#4bacb8',
   },
 });
 export const title = StyleSheet.create({

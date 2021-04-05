@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, SafeAreaView, Button} from 'react-native';
 import {home} from '../styles';
+import {SearchContext} from '../redux/store';
 
 export function Home({navigation}) {
   return (

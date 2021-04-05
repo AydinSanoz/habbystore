@@ -16,6 +16,7 @@ export function CategoryCard({item, navigation}) {
   return (
     <View style={cCard.container}>
       <TouchableOpacity
+        style={cCard.container}
         onPress={() => navigation.navigate('Details', {id: item.id})}>
         <ImageBackground
           style={cCard.img}

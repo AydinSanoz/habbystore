@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import {ProductCard} from './';
 import axios from 'axios';
 import {header, product} from './styles';
+import {reducer, initialState} from '../redux/store';
 
 let originalList = [];
 export function Product(props) {
@@ -19,13 +20,7 @@ export function Product(props) {
       .catch(err => console.log(err));
   }, []);
 
-  useEffect(() => {
-    const filteredData = search => {
-      originalList.forEach(product => {
-        console.log(product.name);
-      });
-    };
-  }, []);
+  useEffect(() => {}, []);
 
   const renderItem = ({item}) => <ProductCard item={item} />;
 

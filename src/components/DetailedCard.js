@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import {dCard, title} from './styles';
 
-export function DetailedCard({item}) {
+export function DetailedCard({item, navigation}) {
   return (
-    <View style={dCard.container}>
+    <TouchableOpacity style={dCard.container}>
       {!item.images[0]?.thumbnail ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (
@@ -22,6 +22,6 @@ export function DetailedCard({item}) {
           <Text style={title.text}>{item.name}</Text>
         </ImageBackground>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
-import {DetailedCard, SearchBar} from '../components';
+import {ProductsCard, SearchBar} from '../components';
 import {layout} from '../styles';
 
 let originalList = [];
@@ -31,7 +31,7 @@ export function Products({navigation, route}) {
   }, [value]);
 
   const renderItem = ({item}) => (
-    <DetailedCard item={item} navigation={navigation} />
+    <ProductsCard item={item} navigation={navigation} />
   );
 
   return (

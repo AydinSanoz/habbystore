@@ -1,12 +1,14 @@
 import React from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
-import {card} from './styles';
+import {Image, View} from 'react-native';
+import {imageCard} from './styles';
+import TitleText from './TitleText';
 
-export function ImageCard({img}) {
-  console.log('🚀 ~ file: ImageCard.js ~ line 6 ~ ImageCard ~ img', img);
+export function ImageCard({source, text}) {
+  const src = {uri: source};
   return (
-    <View style={card.container}>
-      <Image source={{uri: img[0]?.src}} style={card.img} />
+    <View style={imageCard.container}>
+      <Image source={src} style={imageCard.img} />
+      <TitleText>{text}</TitleText>
     </View>
   );
 }

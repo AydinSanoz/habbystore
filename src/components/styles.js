@@ -57,12 +57,28 @@ export const category = StyleSheet.create({
     margin: 10,
   },
 });
+export const imageCard = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderColor: '#c3fdff',
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  img: {
+    width: Dimensions.get('window').width,
+    height: 400,
+  },
+});
 export const product = StyleSheet.create({
   container: {
     flex: 2,
   },
 });
 export const header = StyleSheet.create({
+  container: {
+    width: Dimensions.get('window').width,
+  },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -70,14 +86,19 @@ export const header = StyleSheet.create({
     padding: 10,
     color: '#b4ffff',
     backgroundColor: '#4bacb8',
+    width: '100%',
   },
 });
 export const title = StyleSheet.create({
+  container: {
+    width: Dimensions.get('window').width,
+  },
   text: {
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 20,
-    backgroundColor: '#5d99c695',
+    backgroundColor: '#5d99c690',
+    width: '100%',
   },
 });

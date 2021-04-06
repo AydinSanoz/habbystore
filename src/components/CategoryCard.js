@@ -1,6 +1,7 @@
 import React from 'react';
 import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import {cCard, title} from './styles';
+import TitleText from './TitleText';
 
 // count: 10;
 // description: '';
@@ -30,7 +31,7 @@ export function CategoryCard({item, navigation}) {
               ? require('../assets/habby-logo.png')
               : {uri: item?.image.src}
           }>
-          <Text style={title.text}>{item?.name}</Text>
+          <TitleText>{item?.name}</TitleText>
         </ImageBackground>
       </TouchableOpacity>
     </View>

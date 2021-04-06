@@ -4,6 +4,7 @@ import {CategoryCard} from './';
 import axios from 'axios';
 import {category, header} from './styles';
 import {useSelector} from 'react-redux';
+import HeaderText from './HeaderText';
 
 let originalList = [];
 export function Categories({navigation}) {
@@ -34,7 +35,7 @@ export function Categories({navigation}) {
   );
   return (
     <View style={category.container}>
-      <Text style={header.text}>CATEGORIES</Text>
+      <HeaderText>CATEGORIES</HeaderText>
       {!categories.length ? (
         <ActivityIndicator size="large" color="#c3fdff" />
       ) : (

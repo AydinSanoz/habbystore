@@ -17,7 +17,12 @@ export function CategoryCard({item, navigation}) {
     <View style={cCard.container}>
       <TouchableOpacity
         style={cCard.container}
-        onPress={() => navigation.navigate('Details', {id: item.id})}>
+        onPress={() =>
+          navigation.navigate('Store', {
+            screen: 'Products',
+            params: {id: item.id},
+          })
+        }>
         <ImageBackground
           style={cCard.img}
           source={

@@ -5,9 +5,7 @@ export const searchBarStyles = StyleSheet.create({
     padding: Platform.OS == 'ios' ? 10 : 5,
     borderRadius: 10,
     backgroundColor: '#80deea',
-    width: Dimensions.get('window').width * 0.95,
-    alignSelf: 'center',
-    marginBottom: 10,
+    margin: 10,
   },
   input: {
     fontSize: 20,

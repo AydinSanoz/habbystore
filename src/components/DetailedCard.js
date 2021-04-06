@@ -4,9 +4,6 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ImageBackground,
-  Image,
-  View,
-  ScrollView,
 } from 'react-native';
 import {dCard, title} from './styles';
 

@@ -22,8 +22,8 @@ export function Categories({navigation}) {
 
   useEffect(() => {
     const filteredData = originalList.filter(data => {
-      const inputVal = value.toLowerCase().replaceAll(/\s/g, '');
-      const name = data.name.toLowerCase().replaceAll(/\s/g, '');
+      const inputVal = value.toLowerCase().replace(/\s/g, '');
+      const name = data.name.toLowerCase().replace(/\s/g, '');
       return name.indexOf(inputVal) > -1;
     });
     setCategories(filteredData);

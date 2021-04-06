@@ -7,14 +7,15 @@ import {initialState, SearchContext} from './redux/store';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
-import {Home, Login, Details, Favorites, Welcome} from './pages';
+import {Home, Login, Favorites} from './pages';
+import {Products, Details} from './components';
 
 const Tab = createBottomTabNavigator();
 
-function Bottom() {
+export function Store() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Welcome} />
+      <Tab.Screen name="Products" component={Products} />
       <Tab.Screen name="Details" component={Details} />
       <Tab.Screen name="Favorites" component={Favorites} />
     </Tab.Navigator>
@@ -27,10 +28,9 @@ const Router = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Bottom" component={Bottom} />
+        <Stack.Navigator screenOptions={{headerShown: true}}>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Store" component={Store} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -1,17 +1,22 @@
 import React from 'react';
-import {View, Text, SafeAreaView, Button} from 'react-native';
-import {home} from '../styles';
-import {SearchContext} from '../redux/store';
+import {View, SafeAreaView, ScrollView} from 'react-native';
+import {layout, video} from '../styles';
+import {Categories, SearchBar, AboutUs, Motto, VideoComp} from '../components';
+import world from '../assets/background.mp4';
+import demo from '../assets/solotex.mp4';
 
 export function Home({navigation}) {
   return (
-    <SafeAreaView style={home.container}>
-      <View style={home.container}>
-        <Text>Home</Text>
-        <Button
-          title="Go to Products"
-          onPress={() => navigation.navigate('Bottom')}
-        />
+    <SafeAreaView style={layout.container}>
+      <View style={layout.container}>
+        <SearchBar placeholder="Enter search key" />
+        <ScrollView>
+          <Categories navigation={navigation} />
+          <AboutUs />
+          <VideoComp source={demo} />
+          <Motto />
+          <VideoComp source={world} />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

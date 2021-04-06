@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, TextInput, Text} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {View, TextInput} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {handleSearch} from '../redux/search';
 import {searchBarStyles} from './styles';
 

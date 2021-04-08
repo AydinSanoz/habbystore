@@ -59,6 +59,7 @@ export function ProductsCard(props) {
                   backgroundColor="#ccc"
                   color="red"
                   onPress={() => alert('hasvariation')}
+                  style={{justifyContent: 'flex-end'}}
                 />
               )}
             </View>

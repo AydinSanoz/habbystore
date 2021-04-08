@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Children} from 'react';
 import {View, TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {handleSearch} from '../redux/search';
@@ -15,6 +15,7 @@ export const SearchBar = props => {
 
   return (
     <View style={searchBarStyles.container}>
+      {props.children}
       <Icon.Button
         name="search"
         size={30}

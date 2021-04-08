@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import {CategoryCard, HeaderText, SearchBar} from '../components';
+import {CategoryCard, Drawer, HeaderText, SearchBar} from '../components';
 import axios from 'axios';
 import {category, header} from '../components/styles';
 import {useSelector} from 'react-redux';
@@ -40,7 +40,10 @@ export function Categories(props) {
   return (
     <SafeAreaView style={layout.container}>
       <View style={layout.container}>
-        <SearchBar placeholder="Enter search key" {...props} />
+        <SearchBar placeholder="Enter search key" {...props}>
+          {<Drawer {...props} />}
+        </SearchBar>
+
         <View style={category.container}>
           <HeaderText {...props}>CATEGORIES</HeaderText>
           {!categories.length ? (

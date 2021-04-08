@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export function Drawer(props) {
   return (
-    <View style={{alignSelf: 'center'}}>
+    <View style={{alignSelf: 'flex-start'}}>
       <Icon.Button
         name="menu"
         size={30}

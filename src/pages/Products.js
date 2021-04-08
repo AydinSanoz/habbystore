@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
-import {ProductsCard, SearchBar, HeaderText} from '../components';
+import {ProductsCard, SearchBar, HeaderText, Drawer} from '../components';
 import {layout} from '../styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -38,7 +38,9 @@ export function Products(props) {
   return (
     <SafeAreaView style={layout.container}>
       <View style={layout.container}>
-        <SearchBar placeholder="Enter search key" {...props} />
+        <SearchBar placeholder="Enter search key" {...props}>
+          {<Drawer {...props} />}
+        </SearchBar>
         <HeaderText>{name}</HeaderText>
         <FlatList
           data={product}

@@ -13,7 +13,9 @@ export function Details(props) {
   return (
     <SafeAreaView style={layout.container}>
       <View style={layout.container}>
-        <SearchBar placeholder="Enter search key" {...props} />
+        <SearchBar placeholder="Enter search key" {...props}>
+          {<Drawer {...props} />}
+        </SearchBar>
         <ScrollView>
           <HeaderText>{item.name}</HeaderText>
           <ScrollView horizontal>

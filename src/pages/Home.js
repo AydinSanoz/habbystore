@@ -13,7 +13,7 @@ export function Home(props) {
         <SearchBar placeholder="Enter search key" {...props} />
         <ScrollView style={{margin: 10}}>
           <AboutUs {...props} />
-          <VideoComp source={demo} />
+          {/* <VideoComp source={demo} /> */}
           <Motto />
           <VideoComp source={world} />
         </ScrollView>

@@ -7,6 +7,7 @@ import {layout} from '../styles';
 
 export function Details(props) {
   const item = props.route.params.item;
+  console.log('🚀 ~ file: Details.js ~ line 10 ~ Details ~ item', item);
 
   const images = item.images;
   return (
@@ -14,10 +15,11 @@ export function Details(props) {
       <View style={layout.container}>
         <SearchBar placeholder="Enter search key" {...props} />
         <ScrollView>
+          <HeaderText>{item.name}</HeaderText>
           <ScrollView horizontal>
             {images.map((image, i) => (
               <View key={i}>
-                <ImageCard source={image.src} text={image.name} />
+                <ImageCard source={image.src} />
               </View>
             ))}
           </ScrollView>

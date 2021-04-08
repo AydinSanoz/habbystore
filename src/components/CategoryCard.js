@@ -17,21 +17,21 @@ export function CategoryCard(props) {
   const {item, navigation, route} = props;
 
   return (
-    <View style={cCard.container}>
+    <View>
       <TouchableOpacity
         style={cCard.container}
         onPress={() =>
           navigation.navigate('Products', {id: item.id, name: item.name})
         }>
-        <ImageBackground
+        {/* <ImageBackground
           style={cCard.img}
           source={
             !item.image
               ? require('../assets/habby-logo.png')
               : {uri: item?.image.src}
           }>
-          <TitleText>{item?.name}</TitleText>
-        </ImageBackground>
+        </ImageBackground> */}
+        <Text style={{fontSize: 15, padding: 5}}>{item?.name}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -4,33 +4,73 @@ const width = Dimensions.get('window').width;
 
 export const searchBarStyles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: Platform.OS == 'ios' ? 10 : 5,
-    borderRadius: 10,
-    backgroundColor: '#80deea',
-    marginRight: 10,
+    padding: Platform.OS == 'ios' ? 5 : 2,
+    backgroundColor: '#fafafa',
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#00000040',
   },
   input: {
-    fontSize: 20,
+    flex: 1,
+    fontSize: 18,
   },
 });
 export const pCard = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: '#c3fdff',
-    width: Dimensions.get('window').width * 0.45,
+    width: Dimensions.get('window').width * 0.95,
     margin: 10,
+    padding: 10,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
   img: {
-    height: 250,
-    resizeMode: 'contain',
-    justifyContent: 'flex-end',
+    flex: 1.5,
+    height: 200,
+    resizeMode: 'cover',
+  },
+  textContainer: {
+    flex: 2,
+    alignItems: 'flex-start',
+  },
+  textContent: {
+    flex: 1,
+  },
+  title: {
+    textTransform: 'capitalize',
+  },
+  priceContent: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  regularPrice: {
+    fontSize: 12,
+    textDecorationLine: 'line-through',
+  },
+  price: {
+    fontWeight: 'bold',
+  },
+  bottom: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  stock: {
+    color: 'white',
+    backgroundColor: 'red',
+    fontWeight: 'bold',
+  },
+  quantity: {
+    flex: 1,
   },
 });
 export const cCard = StyleSheet.create({
   container: {
     borderColor: '#80deea',
-    borderWidth: 2,
+    borderBottomWidth: 1,
     margin: 10,
   },
   img: {
@@ -79,21 +119,21 @@ export const product = StyleSheet.create({
 });
 export const header = StyleSheet.create({
   container: {
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    padding: 10,
-    color: '#b4ffff',
-    backgroundColor: '#4bacb8',
+
+    color: '#00000090',
+    backgroundColor: '#fafafa',
+    padding: 5,
   },
 });
 export const title = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
+  container: {},
   text: {
     color: '#fff',
     fontWeight: 'bold',

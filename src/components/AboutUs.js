@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export function AboutUs() {
+export function AboutUs(props) {
   return (
     <View>
       <Text style={{fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>

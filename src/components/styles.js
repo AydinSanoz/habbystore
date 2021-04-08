@@ -1,11 +1,14 @@
 import {Dimensions, StyleSheet, Platform} from 'react-native';
 
+const width = Dimensions.get('window').width;
+
 export const searchBarStyles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: Platform.OS == 'ios' ? 10 : 5,
     borderRadius: 10,
     backgroundColor: '#80deea',
-    margin: 10,
+    marginRight: 10,
   },
   input: {
     fontSize: 20,
@@ -32,7 +35,6 @@ export const cCard = StyleSheet.create({
   },
   img: {
     resizeMode: 'contain',
-    width: 300,
     height: 150,
     justifyContent: 'flex-end',
   },
@@ -66,8 +68,8 @@ export const imageCard = StyleSheet.create({
     justifyContent: 'center',
   },
   img: {
-    width: Dimensions.get('window').width,
-    height: 400,
+    minWidth: width,
+    minHeight: 400,
   },
 });
 export const product = StyleSheet.create({
@@ -77,7 +79,7 @@ export const product = StyleSheet.create({
 });
 export const header = StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width,
+    margin: 10,
   },
   text: {
     fontSize: 20,
@@ -86,12 +88,11 @@ export const header = StyleSheet.create({
     padding: 10,
     color: '#b4ffff',
     backgroundColor: '#4bacb8',
-    width: '100%',
   },
 });
 export const title = StyleSheet.create({
   container: {
-    width: Dimensions.get('window').width,
+    width: '100%',
   },
   text: {
     color: '#fff',
@@ -99,6 +100,5 @@ export const title = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     backgroundColor: '#5d99c690',
-    width: '100%',
   },
 });

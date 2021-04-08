@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {title} from './styles';
 
-export default function TitleText({children}) {
+export default function TitleText({children}, props) {
   return (
     <View style={title.container}>
       <Text style={title.text}>{children}</Text>

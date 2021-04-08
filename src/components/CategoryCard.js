@@ -13,16 +13,15 @@ import TitleText from './TitleText';
 // review_count: 0;
 // slug: 'deri-biye';
 
-export function CategoryCard({item, navigation}) {
+export function CategoryCard(props) {
+  const {item, navigation, route} = props;
+
   return (
     <View style={cCard.container}>
       <TouchableOpacity
         style={cCard.container}
         onPress={() =>
-          navigation.navigate('Store', {
-            screen: 'Products',
-            params: {id: item.id},
-          })
+          navigation.navigate('Products', {id: item.id, name: item.name})
         }>
         <ImageBackground
           style={cCard.img}

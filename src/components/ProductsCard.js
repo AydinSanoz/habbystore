@@ -5,14 +5,16 @@ import {
   ActivityIndicator,
   ImageBackground,
 } from 'react-native';
-import {dCard, title} from './styles';
+import {dCard} from './styles';
 import TitleText from './TitleText';
 
-export function ProductsCard({item, navigation}) {
+export function ProductsCard(props) {
+  const {item, navigation, route} = props;
+
   return (
     <TouchableOpacity
       style={dCard.container}
-      onPress={() => navigation.navigate('Details', {item})}>
+      onPress={() => navigation.navigate('Details', {item: item})}>
       {!item.images[0]?.src ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (

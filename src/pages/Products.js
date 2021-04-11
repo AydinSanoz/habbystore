@@ -1,12 +1,10 @@
-import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {View, SafeAreaView, FlatList, ActivityIndicator} from 'react-native';
+import {FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ProductsCard, SearchBar, HeaderText, IconButton} from '../components';
-import {layout} from '../styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {fetch} from '../helper/fetchData';
-import {wcCategory, wcProducts} from '../constants';
+import {wcProducts} from '../constants';
 import ActivityRoller from '../components/ActivityRoller';
 import Layout from '../components/Layout';
 
@@ -28,10 +26,10 @@ export function Products(props) {
   }, [count, id]);
 
   useEffect(() => {
-    const filteredData = originalList.filter(data => {
-      const inputVal = value.toLowerCase().replace(/\s/g, '');
-      const dataName = data.name.toLowerCase().replace(/\s/g, '');
-      return dataName.indexOf(inputVal) > -1;
+    const filteredData = originalList?.filter(data => {
+      const inputVal = value?.toLowerCase().replace(/\s/g, '');
+      const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
+      return dataName?.indexOf(inputVal) > -1;
     });
     setProduct(filteredData);
   }, [value]);
@@ -43,7 +41,7 @@ export function Products(props) {
       <SearchBar placeholder="Enter search key" {...props}>
         <IconButton
           name="keyboard-arrow-left"
-          onPress={() => props.navigation.goBack()}
+          onPress={() => props?.navigation?.goBack()}
           {...props}
         />
         <HeaderText>

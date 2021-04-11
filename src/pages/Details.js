@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {ImageCard, HeaderText, SearchBar, IconButton} from '../components';
 import HTMLView from 'react-native-htmlview';
-import {layout} from '../styles';
 import Layout from '../components/Layout';
 
 export function Details(props) {

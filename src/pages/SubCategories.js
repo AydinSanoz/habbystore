@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, ActivityIndicator} from 'react-native';
+import {View, FlatList, Alert} from 'react-native';
 import {ListCard, IconButton, HeaderText, SearchBar} from '../components';
 import {category} from '../components/styles';
 import {useSelector} from 'react-redux';
-import {layout} from '../styles';
 import {fetch} from '../helper/fetchData';
 import {wcCategory} from '../constants';
 import Layout from '../components/Layout';
@@ -20,10 +19,16 @@ export function SubCategories(props) {
       parent: id,
       per_page: count,
     }).then(res => {
-      setCategories(res.data);
-      originalList = res.data;
+      if (res.err) {
+        Alert.alert('WELCOME HABBY-STORE', res.err, [
+          {text: 'OK', onPress: () => props.navigation.goBack()},
+        ]);
+      } else {
+        setCategories(res.data);
+        originalList = res.data;
+      }
     });
-  }, [count, id]);
+  }, [count, id, props.navigation]);
 
   useEffect(() => {
     const filteredData = originalList?.filter(data => {

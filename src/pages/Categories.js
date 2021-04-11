@@ -1,15 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {ListCard, HeaderText, SearchBar} from '../components';
-import {
-  View,
-  FlatList,
-  ActivityIndicator,
-  SafeAreaView,
-  Text,
-} from 'react-native';
+import {View, FlatList, Alert} from 'react-native';
 import {category} from '../components/styles';
 import {useSelector} from 'react-redux';
-import {layout} from '../styles';
 import {fetch} from '../helper/fetchData';
 import {wcCategory} from '../constants';
 import Layout from '../components/Layout';
@@ -23,10 +16,16 @@ export function Categories(props) {
 
   useEffect(() => {
     fetch(wcCategory.route, wcCategory.main).then(res => {
-      setCategories(res.data);
-      originalList = res.data;
+      if (res.err) {
+        Alert.alert('WELCOME HABBY-STORE', res.err, [
+          {text: 'OK', onPress: () => props.navigation.goBack()},
+        ]);
+      } else {
+        setCategories(res.data);
+        originalList = res.data;
+      }
     });
-  }, []);
+  }, [props.navigation]);
 
   useEffect(() => {
     const filteredData = originalList.filter(data => {

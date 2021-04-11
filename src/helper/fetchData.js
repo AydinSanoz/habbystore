@@ -16,7 +16,11 @@ export async function fetch(route, params) {
       },
     });
     return data;
-  } catch (error) {
-    return {'error occures': error};
+  } catch ({response}) {
+    if (response.status === 400) {
+      return {err: 'Aradığınız Ürün Bulunamadı'};
+    } else {
+      return {err: 'Network error'};
+    }
   }
 }

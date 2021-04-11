@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList} from 'react-native';
+import {Alert, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ProductsCard, SearchBar, HeaderText, IconButton} from '../components';
 
@@ -20,10 +20,16 @@ export function Products(props) {
       category: id,
       per_page: count,
     }).then(res => {
-      setProduct(res.data);
-      originalList = res.data;
+      if (res.err) {
+        Alert.alert('WELCOME HABBY-STORE', res.err, [
+          {text: 'OK', onPress: () => props.navigation.goBack()},
+        ]);
+      } else {
+        setProduct(res.data);
+        originalList = res.data;
+      }
     });
-  }, [count, id]);
+  }, [count, id, props.navigation]);
 
   useEffect(() => {
     const filteredData = originalList?.filter(data => {

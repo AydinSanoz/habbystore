@@ -1,12 +1,12 @@
-import React, {Children} from 'react';
+import * as React from 'react';
 import {View, TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {handleSearch} from '../redux/search';
-import {Drawer} from './Drawer';
 import {searchBarStyles} from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export const SearchBar = props => {
+  const [isVisible, setIsVisible] = React.useState(false);
   const dispatch = useDispatch();
 
   function handleChange(val) {
@@ -15,19 +15,30 @@ export const SearchBar = props => {
 
   return (
     <View style={searchBarStyles.container}>
-      {props.children}
+      <Icon.Button
+        name="menu"
+        size={30}
+        color="#000"
+        backgroundColor="#fafafa"
+        onPress={() => props.navigation.toggleDrawer()}
+      />
       <Icon.Button
         name="search"
         size={30}
-        color="#00000050"
-        backgroundColor="transparent"
+        color="#000"
+        backgroundColor="#fafafa"
+        onPress={() => setIsVisible(!isVisible)}
       />
-      <TextInput
-        style={searchBarStyles.input}
-        onChangeText={handleChange}
-        placeholder={props.placeholder}
-        placeholderTextColor={props.color}
-      />
+      {isVisible ? (
+        <TextInput
+          style={searchBarStyles.input}
+          onChangeText={handleChange}
+          placeholder={props.placeholder}
+          placeholderTextColor={props.color}
+        />
+      ) : (
+        props.children
+      )}
     </View>
   );
 };

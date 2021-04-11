@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {ListCard, HeaderText, SearchBar} from '../components';
-import {
-  View,
-  FlatList,
-  ActivityIndicator,
-  SafeAreaView,
-  Text,
-} from 'react-native';
+import {View, FlatList, ActivityIndicator} from 'react-native';
+import {ListCard, IconButton, HeaderText, SearchBar} from '../components';
 import {category} from '../components/styles';
 import {useSelector} from 'react-redux';
 import {layout} from '../styles';
@@ -16,20 +10,23 @@ import Layout from '../components/Layout';
 import ActivityRoller from '../components/ActivityRoller';
 
 let originalList = [];
-
-export function Categories(props) {
+export function SubCategories(props) {
   const [categories, setCategories] = useState([]);
   const {value} = useSelector(state => state.search);
+  const {id, name, count} = props.route.params;
 
   useEffect(() => {
-    fetch(wcCategory.route, wcCategory.main).then(res => {
+    fetch(wcCategory.route, {
+      parent: id,
+      per_page: count,
+    }).then(res => {
       setCategories(res.data);
       originalList = res.data;
     });
-  }, []);
+  }, [count, id]);
 
   useEffect(() => {
-    const filteredData = originalList.filter(data => {
+    const filteredData = originalList?.filter(data => {
       const inputVal = value.toLowerCase().replace(/\s/g, '');
       const name = data.name.toLowerCase().replace(/\s/g, '');
       return name.indexOf(inputVal) > -1;
@@ -41,7 +38,7 @@ export function Categories(props) {
     <ListCard
       category={item}
       onPress={() =>
-        props.navigation.navigate('SubCategories', {
+        props.navigation.navigate('Products', {
           id: item.id,
           name: item.name,
           count: item.count,
@@ -53,10 +50,19 @@ export function Categories(props) {
   return (
     <Layout>
       <SearchBar placeholder="Enter search key" {...props}>
-        <HeaderText {...props}>TÜM KATEGORİLER</HeaderText>
+        <IconButton
+          name="keyboard-arrow-left"
+          onPress={() => props.navigation.goBack()}
+          {...props}
+        />
+        <HeaderText {...props}>
+          {name}
+          {count}
+        </HeaderText>
       </SearchBar>
+
       <View style={category.container}>
-        {!categories.length > 0 ? (
+        {!categories?.length > 0 ? (
           <ActivityRoller />
         ) : (
           <FlatList

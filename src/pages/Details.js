@@ -1,39 +1,40 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {View, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-
-import {ImageCard, Drawer, HeaderText, SearchBar} from '../components';
+import {ImageCard, HeaderText, SearchBar, IconButton} from '../components';
 import HTMLView from 'react-native-htmlview';
 import {layout} from '../styles';
+import Layout from '../components/Layout';
 
 export function Details(props) {
   const item = props.route.params.item;
-  console.log('🚀 ~ file: Details.js ~ line 10 ~ Details ~ item', item);
-
   const images = item.images;
+
   return (
-    <SafeAreaView style={layout.container}>
-      <View style={layout.container}>
-        <SearchBar placeholder="Enter search key" {...props}>
-          {<Drawer {...props} />}
-        </SearchBar>
-        <ScrollView>
-          <HeaderText>{item.name}</HeaderText>
-          <ScrollView horizontal>
-            {images.map((image, i) => (
-              <View key={i}>
-                <ImageCard source={image.src} />
-              </View>
-            ))}
-          </ScrollView>
-          <HeaderText>DESCRIPTION</HeaderText>
-          <ScrollView>
-            <View style={{margin: 10}}>
-              <HTMLView value={item.description} stylesheet={styles} />
+    <Layout>
+      <SearchBar placeholder="Enter search key" {...props}>
+        <IconButton
+          name="keyboard-arrow-left"
+          onPress={() => props.navigation.goBack()}
+          {...props}
+        />
+      </SearchBar>
+      <ScrollView>
+        <HeaderText>{item.name}</HeaderText>
+        <ScrollView horizontal>
+          {images.map((image, i) => (
+            <View key={i}>
+              <ImageCard source={image.src} />
             </View>
-          </ScrollView>
+          ))}
         </ScrollView>
-      </View>
-    </SafeAreaView>
+        <HeaderText>DESCRIPTION</HeaderText>
+        <ScrollView>
+          <View style={{margin: 10}}>
+            <HTMLView value={item.description} stylesheet={styles} />
+          </View>
+        </ScrollView>
+      </ScrollView>
+    </Layout>
   );
 }
 

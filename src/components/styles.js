@@ -9,6 +9,7 @@ export const searchBarStyles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#00000040',
+    alignItems: 'center',
   },
   input: {
     flex: 1,
@@ -31,20 +32,21 @@ export const pCard = StyleSheet.create({
     resizeMode: 'cover',
   },
   textContainer: {
-    flex: 2,
+    flex: 3,
+    // marginTop: 10,
+    // marginBottom: 10,
+    padding: 20,
     alignItems: 'flex-start',
   },
-  textContent: {
-    flex: 1,
-  },
+  textContent: {},
   title: {
     textTransform: 'capitalize',
   },
   priceContent: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
     marginTop: 5,
     marginBottom: 5,
+    flex: 1,
   },
   regularPrice: {
     fontSize: 12,
@@ -53,18 +55,26 @@ export const pCard = StyleSheet.create({
   price: {
     fontWeight: 'bold',
   },
-  bottom: {
+
+  ratingContent: {
+    flexDirection: 'row',
+  },
+  rating: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  bottom: {
+    flexDirection: 'row',
+  },
+  quantity: {
+    flex: 1,
   },
 
   stock: {
     color: 'white',
     backgroundColor: 'red',
     fontWeight: 'bold',
-  },
-  quantity: {
-    flex: 1,
   },
 });
 export const cCard = StyleSheet.create({
@@ -121,11 +131,12 @@ export const header = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 10,
+    flex: 1,
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
 
     color: '#00000090',
     backgroundColor: '#fafafa',

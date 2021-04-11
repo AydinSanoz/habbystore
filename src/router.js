@@ -2,17 +2,24 @@ import * as React from 'react';
 import {NavigationContainer, DrawerActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Provider} from 'react-redux';
+import store from './redux/store';
+import Layout from './components/Layout';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
-import {Provider} from 'react-redux';
-import store from './redux/store';
-
-import {Home, Categories, Products, Details, Login, Favorites} from './pages';
+import {
+  Home,
+  Categories,
+  Products,
+  Details,
+  Login,
+  Favorites,
+  SubCategories,
+} from './pages';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,9 +46,10 @@ const Stack = createStackNavigator();
 function StackRouter(props) {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: true}}
+      screenOptions={{headerShown: false}}
       initialRouteName="Categories">
       <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen name="SubCategories" component={SubCategories} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
@@ -62,7 +70,7 @@ function Router(props) {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Store">
           <Drawer.Screen name="Store" component={Store} />
         </Drawer.Navigator>
       </NavigationContainer>

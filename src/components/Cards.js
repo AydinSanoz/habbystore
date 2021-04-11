@@ -76,13 +76,14 @@ export function CategoryCard(props) {
 }
 export function ProductsCard(props) {
   const {item, navigation, route} = props;
+  console.log('🚀 ~ file: Cards.js ~ line 79 ~ ProductsCard ~ item', item);
   function ratingCompleted(rating) {
     console.log('Rating is: ' + rating);
   }
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Details', {item: item})}>
-      {!item.images[0]?.src ? (
+      {!item?.images[0]?.src > 0 ? (
         <ActivityRoller />
       ) : (
         <View style={pCard.container}>
@@ -90,6 +91,7 @@ export function ProductsCard(props) {
             style={pCard.img}
             source={{uri: item.images[0].src}}
           />
+
           <View style={pCard.textContainer}>
             {/* <View style={pCard.textContent}> */}
             <Text style={pCard.title}>{item.name}</Text>
@@ -101,7 +103,7 @@ export function ProductsCard(props) {
               {!item.review_count > 0 && (
                 <View style={pCard.rating}>
                   <Rating
-                    type="custom"
+                    type="star"
                     ratingBackgroundColor="#c8c7c8"
                     // startingValue={item.average_rating}
                     startingValue={2.5}
@@ -110,7 +112,7 @@ export function ProductsCard(props) {
                     style={{paddingVertical: 10}}
                     // showRating
                   />
-                  <Text>({item.review_count})</Text>
+                  <Text>({item.rating_count})</Text>
                 </View>
               )}
               {item.has_options && (
@@ -127,8 +129,9 @@ export function ProductsCard(props) {
             </View>
             {/* </View> */}
             <View style={pCard.bottom}>
-              <Text style={pCard.quantity}>Quantity:{item.quantity_limit}</Text>
-              {item.is_in_stock && (
+              {item.stock_status === 'inStock' ? (
+                <Text style={pCard.quantity}>Stock:{item.stock_quantity}</Text>
+              ) : (
                 <Text style={pCard.stock}>Not in Stock</Text>
               )}
             </View>

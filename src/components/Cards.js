@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import {Rating} from 'react-native-ratings';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ActivityRoller from './ActivityRoller';
 import {dCard, pCard, cCard, imageCard} from './styles';
+import {Text1, Text2} from './Texts';
 import TitleText from './TitleText';
 
 // count: 10;
@@ -37,10 +39,8 @@ export function ListCard(props) {
   return (
     <View>
       <TouchableOpacity style={cCard.container} onPress={props.onPress}>
-        <Text style={{fontSize: 15, padding: 5, textAlign: 'justify'}}>
-          {name} - Prod:{count} - Pare:{parent} - Id:
-          {id}
-        </Text>
+        <Text1>{name}</Text1>
+        <Text2>{count}</Text2>
       </TouchableOpacity>
     </View>
   );
@@ -73,8 +73,7 @@ export function CategoryCard(props) {
     </View>
   );
 }
-export function ProductsCard(props) {
-  const {item, navigation, route} = props;
+export function ProductsCard({item, navigation, route}) {
   console.log('🚀 ~ file: Cards.js ~ line 79 ~ ProductsCard ~ item', item);
   function ratingCompleted(rating) {
     console.log('Rating is: ' + rating);
@@ -86,17 +85,16 @@ export function ProductsCard(props) {
         <ActivityRoller />
       ) : (
         <View style={pCard.container}>
-          <ImageBackground
-            style={pCard.img}
-            source={{uri: item.images[0].src}}
-          />
+          <Image style={pCard.img} source={{uri: item.images[0].src}} />
 
           <View style={pCard.textContainer}>
             {/* <View style={pCard.textContent}> */}
             <Text style={pCard.title}>{item.name}</Text>
             <View style={pCard.priceContent}>
-              <Text style={pCard.regularPrice}>{item.regular_price} TL</Text>
-              <Text style={pCard.price}>{item.sale_price} TL</Text>
+              {/* <Text style={pCard.regularPrice}>{item.regular_price} TL</Text>
+              <Text style={pCard.price}>{item.sale_price} TL</Text> */}
+
+              <HTMLView style={pCard.price}>{item.price_html} TL</HTMLView>
             </View>
             <View style={pCard.ratingContent}>
               {!item.review_count > 0 && (

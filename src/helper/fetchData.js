@@ -12,15 +12,25 @@ export async function fetch(route, params) {
       params: {
         consumer_key: consumer_key,
         consumer_secret: consumer_secret,
+        order: 'asc',
+        per_page: 99,
         ...params,
       },
     });
+    console.log('res', data);
     return data;
   } catch ({response}) {
-    if (response.status === 400) {
-      return {err: 'Aradığınız Ürün Bulunamadı'};
-    } else {
-      return {err: 'Network error'};
-    }
+    console.log('err', response);
+    return response;
   }
 }
+/* 
+100 Informational codes indicating that the request initiated by the browser is continuing.
+200 Success codes returned when browser request was received, understood, and processed by the server.
+300s: Redirection codes returned when a new resource has been substituted for the requested resource.
+400s: Client error codes
+401 unAuth err
+404 noRoute
+500s: Server error codes
+
+*/

@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Dimensions} from 'react-native';
 
 export function AboutUs(props) {
   return (
-    <View>
+    <View style={{width: Dimensions.get('window').width}}>
       <Text style={{fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>
         WHO WE ARE
       </Text>

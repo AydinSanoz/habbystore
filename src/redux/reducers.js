@@ -1,9 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 export const searchSlice = createSlice({
-  name: 'search',
+  name: 'redux',
   initialState: {
     value: '',
+    isModalVisible: true,
+    parent: 0,
+    count: 0,
+    name: 'Tüm Kategoriler',
+    id: 15,
   },
   reducers: {
     handleSearch: (state, action) => {
@@ -13,10 +18,12 @@ export const searchSlice = createSlice({
       // immutable state based off those changes
       state.value = action.payload;
     },
+    handleModal: (state, action) => {
+      state.parent = action.payload;
+    },
   },
 });
-
 // Action creators are generated for each case reducer function
-export const {handleSearch} = searchSlice.actions;
+export const {handleSearch, handleModal} = searchSlice.actions;
 
 export default searchSlice.reducer;

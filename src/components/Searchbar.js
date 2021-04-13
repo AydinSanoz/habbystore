@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, TextInput} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {handleSearch} from '../redux/search';
+import {handleSearch} from '../redux/reducers';
 import {searchBarStyles} from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 

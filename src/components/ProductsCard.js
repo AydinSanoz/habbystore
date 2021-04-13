@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {pCard} from './styles';
 import {Rating} from 'react-native-ratings';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -6,16 +6,12 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  ImageBackground,
   View,
+  Image,
 } from 'react-native';
 
 export function ProductsCard(props) {
-  const {item, navigation, route} = props;
-  console.log(
-    '🚀 ~ file: ProductsCard.js ~ line 15 ~ ProductsCard ~ item',
-    item,
-  );
+  const {item, navigation} = props;
 
   function ratingCompleted(rating) {
     console.log('Rating is: ' + rating);
@@ -27,10 +23,7 @@ export function ProductsCard(props) {
         <ActivityIndicator size="large" color="blue" />
       ) : (
         <View style={pCard.container}>
-          <ImageBackground
-            style={pCard.img}
-            source={{uri: item.images[0].src}}
-          />
+          <Image style={pCard.img} source={{uri: item.images[0].src}} />
           <View style={pCard.textContainer}>
             {/* <View style={pCard.textContent}> */}
             <Text style={pCard.title}>{item.name}</Text>
@@ -79,7 +72,6 @@ export function ProductsCard(props) {
     </TouchableOpacity>
   );
 }
-
 /*
 attributes: (2) [{…}, {…}]
 average_rating: "0.00"

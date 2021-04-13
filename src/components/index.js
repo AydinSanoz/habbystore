@@ -9,3 +9,4 @@ export * from './IconButton';
 export * from './DropDown';
 export * from './Layout';
 export * from './ActivityRoller';
+export * from './ModalComp';

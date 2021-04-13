@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 import ActivityRoller from '../components/ActivityRoller';
 
 let originalList = [];
-export function SubCategories(props) {
+export function SubSub(props) {
   const [categories, setCategories] = useState([]);
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
@@ -17,35 +17,38 @@ export function SubCategories(props) {
   useEffect(() => {
     fetch(wcCategory.route, {
       parent: id,
-      per_page: 99,
+      per_page: 90,
     }).then(res => {
       if (res.err) {
         console.log(
           '🚀 ~ file: SubCategories.js ~ line 28 ~ SubCategories ~ res',
           res.data,
         );
+
         Alert.alert('WELCOME HABBY-STORE', res.err, [
           {text: 'OK', onPress: () => props.navigation.goBack()},
         ]);
       }
-      if (res.data.length <= 0) {
-        console.log(res.data.length);
+      if (res.data.length === 0) {
         props.navigation.navigate('Products', {
           id: id,
           name: name,
           count: count,
         });
-        // Alert.alert('WELCOME HABBY STORE', 'Select other category', [
-        //   {text: 'OK', onPress: () => props.navigation.goBack()},
-        // ]);
+
+        // Alert.alert(
+        //   'WELCOME HABBY STORE',
+        //   'Please select other categorySubsub',
+        //   [{text: 'OK', onPress: () => props.navigation.goBack()}],
+        // );
       } else {
-        console.log(res.data.length);
+        console.log(res.data);
         setCategories(res.data);
         originalList = res.data;
       }
     });
     return () => {
-      <SubCategories />;
+      <SubSub />;
     };
   }, [count, id, name, props.navigation]);
 
@@ -62,7 +65,7 @@ export function SubCategories(props) {
     <ListCard
       {...item}
       onPress={() =>
-        props.navigation.navigate('SubSub', {
+        props.navigation.navigate('Products', {
           id: item.id,
           name: item.name,
           count: item.count,

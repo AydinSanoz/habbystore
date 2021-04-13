@@ -2,7 +2,10 @@ import * as React from 'react';
 import {NavigationContainer, DrawerActions} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import {ModalPortal} from 'react-native-modals';
 import {Provider} from 'react-redux';
+
 import store from './redux/store';
 import Layout from './components/Layout';
 import {
@@ -20,6 +23,7 @@ import {
   Favorites,
   SubCategories,
 } from './pages';
+import {SubSub} from './pages/SubSub';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,6 +54,7 @@ function StackRouter(props) {
       initialRouteName="Categories">
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="SubCategories" component={SubCategories} />
+      <Stack.Screen name="SubSub" component={SubSub} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
@@ -74,6 +79,7 @@ function Router(props) {
           <Drawer.Screen name="Store" component={Store} />
         </Drawer.Navigator>
       </NavigationContainer>
+      <ModalPortal />
     </Provider>
   );
 }

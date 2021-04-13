@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ListCard, HeaderText, SearchBar} from '../components';
+import {ListCard, HeaderText, SearchBar, IconButton} from '../components';
 import {View, FlatList, Alert} from 'react-native';
 import {category} from '../components/styles';
 import {useSelector} from 'react-redux';
@@ -12,20 +12,32 @@ let originalList = [];
 
 export function Categories(props) {
   const [categories, setCategories] = useState([]);
-  const {value} = useSelector(state => state.search);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const {value, count, name, parent} = useSelector(state => state.search);
 
   useEffect(() => {
-    fetch(wcCategory.route, wcCategory.main).then(res => {
+    fetch(wcCategory.route, {parent: parent}).then(res => {
       if (res.err) {
-        Alert.alert('WELCOME HABBY-STORE', res.err, [
-          {text: 'OK', onPress: () => props.navigation.goBack()},
-        ]);
+        console.log('err', res.err);
+      }
+      if (res.data.length === 0) {
+        Alert.alert(
+          'WELCOME HABBY STORE',
+          `Try again Please${res.data.length}`,
+          [{text: 'OK', onPress: () => props.navigation.goBack()}],
+        );
+        props.navigation.goBack();
       } else {
         setCategories(res.data);
         originalList = res.data;
+        setIsLoading(false);
       }
     });
-  }, [props.navigation]);
+    return () => {
+      <Categories />;
+    };
+  }, [parent, props.navigation]);
 
   useEffect(() => {
     const filteredData = originalList.filter(data => {
@@ -36,26 +48,37 @@ export function Categories(props) {
     setCategories(filteredData);
   }, [value]);
 
-  const renderItem = ({item}) => (
-    <ListCard
-      category={item}
-      onPress={() =>
-        props.navigation.navigate('SubCategories', {
-          id: item.id,
-          name: item.name,
-          count: item.count,
-        })
-      }
-      {...props}
-    />
-  );
+  const renderItem = ({item}) => {
+    return (
+      <ListCard
+        {...item}
+        onPress={() =>
+          props.navigation.navigate('SubCategories', {
+            id: item.id,
+            name: item.name,
+            count: item.count,
+          })
+        }
+        {...props}
+      />
+    );
+  };
+
   return (
     <Layout>
       <SearchBar placeholder="Enter search key" {...props}>
-        <HeaderText {...props}>TÜM KATEGORİLER</HeaderText>
+        <IconButton
+          name="keyboard-arrow-left"
+          onPress={() => props.navigation.goBack()}
+          {...props}
+        />
+        <HeaderText {...props}>
+          {name}
+          {count}
+        </HeaderText>
       </SearchBar>
       <View style={category.container}>
-        {!categories.length > 0 ? (
+        {isLoading ? (
           <ActivityRoller />
         ) : (
           <FlatList

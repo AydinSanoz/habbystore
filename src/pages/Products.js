@@ -2,34 +2,54 @@ import React, {useState, useEffect} from 'react';
 import {Alert, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ProductsCard, SearchBar, HeaderText, IconButton} from '../components';
-
 import {fetch} from '../helper/fetchData';
 import {wcProducts} from '../constants';
 import ActivityRoller from '../components/ActivityRoller';
 import Layout from '../components/Layout';
 
 let originalList = [];
-
 export function Products(props) {
   const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
 
   useEffect(() => {
     fetch(wcProducts.route, {
       category: id,
-      per_page: count,
+      per_page: 99,
+      order: 'asc',
     }).then(res => {
       if (res.err) {
+        console.log(res);
         Alert.alert('WELCOME HABBY-STORE', res.err, [
           {text: 'OK', onPress: () => props.navigation.goBack()},
         ]);
+      }
+      if (res.data.length === 0) {
+        Alert.alert('WELCOME HABBY STORE', 'very soon', [
+          {
+            text: 'OK',
+            onPress: () => {
+              props.navigation.goBack();
+            },
+          },
+        ]);
       } else {
+        console.log(
+          '🚀 ~ file: Products.js ~ line 30 ~ Products ~ res',
+          res.data,
+        );
         setProduct(res.data);
         originalList = res.data;
+        setIsLoading(false);
       }
     });
-  }, [count, id, props.navigation]);
+    return () => {
+      <Products />;
+    };
+  }, [id, props.navigation]);
 
   useEffect(() => {
     const filteredData = originalList?.filter(data => {
@@ -51,7 +71,7 @@ export function Products(props) {
           {...props}
         />
         <HeaderText>
-          {name} {count}{' '}
+          {name} - {count}
         </HeaderText>
       </SearchBar>
       {!product?.length > 0 ? (

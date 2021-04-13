@@ -22,7 +22,7 @@ import TitleText from './TitleText';
 // review_count: 0;
 // slug: 'deri-biye';
 
-export function ImageCard({source, text}, props) {
+export function ImageCard({source, text}) {
   const src = {uri: source};
   return (
     <View style={imageCard.container}>
@@ -32,15 +32,14 @@ export function ImageCard({source, text}, props) {
   );
 }
 export function ListCard(props) {
-  const {category, navigation, route} = props;
+  const {id, name, count, parent, navigation, route} = props;
 
   return (
     <View>
       <TouchableOpacity style={cCard.container} onPress={props.onPress}>
         <Text style={{fontSize: 15, padding: 5, textAlign: 'justify'}}>
-          {category?.name}
-          {'      -      '}
-          {category?.count}
+          {name} - Prod:{count} - Pare:{parent} - Id:
+          {id}
         </Text>
       </TouchableOpacity>
     </View>

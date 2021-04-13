@@ -11,6 +11,7 @@ import ActivityRoller from '../components/ActivityRoller';
 let originalList = [];
 export function SubCategories(props) {
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
 
@@ -28,7 +29,7 @@ export function SubCategories(props) {
           {text: 'OK', onPress: () => props.navigation.goBack()},
         ]);
       }
-      if (res.data.length <= 0) {
+      if (res.data.length === 0) {
         console.log(res.data.length);
         props.navigation.navigate('Products', {
           id: id,
@@ -41,6 +42,7 @@ export function SubCategories(props) {
       } else {
         console.log(res.data.length);
         setCategories(res.data);
+        setIsLoading(false);
         originalList = res.data;
       }
     });
@@ -86,7 +88,7 @@ export function SubCategories(props) {
       </SearchBar>
 
       <View style={category.container}>
-        {!categories?.length > 0 ? (
+        {isLoading ? (
           <ActivityRoller />
         ) : (
           <FlatList

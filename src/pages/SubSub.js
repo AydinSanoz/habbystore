@@ -11,6 +11,7 @@ import ActivityRoller from '../components/ActivityRoller';
 let originalList = [];
 export function SubSub(props) {
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
 
@@ -26,7 +27,7 @@ export function SubSub(props) {
         );
 
         Alert.alert('WELCOME HABBY-STORE', res.err, [
-          {text: 'OK', onPress: () => props.navigation.goBack()},
+          {text: 'OK', onPress: () => props.navigation.navigate('Home')},
         ]);
       }
       if (res.data.length === 0) {
@@ -35,15 +36,10 @@ export function SubSub(props) {
           name: name,
           count: count,
         });
-
-        // Alert.alert(
-        //   'WELCOME HABBY STORE',
-        //   'Please select other categorySubsub',
-        //   [{text: 'OK', onPress: () => props.navigation.goBack()}],
-        // );
       } else {
         console.log(res.data);
         setCategories(res.data);
+        setIsLoading(false);
         originalList = res.data;
       }
     });
@@ -89,7 +85,7 @@ export function SubSub(props) {
       </SearchBar>
 
       <View style={category.container}>
-        {!categories?.length > 0 ? (
+        {isLoading ? (
           <ActivityRoller />
         ) : (
           <FlatList

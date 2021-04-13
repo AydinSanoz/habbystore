@@ -74,7 +74,7 @@ export function Products(props) {
           {name} - {count}
         </HeaderText>
       </SearchBar>
-      {!product?.length > 0 ? (
+      {isLoading ? (
         <ActivityRoller />
       ) : (
         <FlatList

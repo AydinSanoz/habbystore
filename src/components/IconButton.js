@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export function IconButton(props) {
   return (
-    <View style={{alignSelf: 'center'}}>
+    <View
+      style={{alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}>
       <Icon.Button
         name={props.name}
         size={30}
@@ -12,6 +13,7 @@ export function IconButton(props) {
         backgroundColor="transparent"
         onPress={props.onPress}
       />
+      {props.children}
     </View>
   );
 }

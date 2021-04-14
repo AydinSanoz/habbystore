@@ -45,34 +45,75 @@ export function ListCard(props) {
     </View>
   );
 }
-export function CategoryCard(props) {
-  const {category, navigation, route} = props;
+
+export function DetailedCard(props) {
+  const {item} = props;
+  console.log('🚀 ~ file: Cards.js ~ line 50 ~ DetailedCard ~ item', item);
 
   return (
     <View>
-      <TouchableOpacity
-        style={cCard.container}
-        onPress={() =>
-          navigation.navigate('Products', {
-            id: category.id,
-            name: category.name,
-            count: category.count,
-          })
-        }>
+      <TouchableOpacity style={cCard.container} onPress={() => null}>
         <ImageBackground
           style={cCard.img}
           source={
-            !category.image
-              ? require('../assets/habby-logo.png')
-              : {uri: category?.image.src}
+            require('../assets/habby-logo.png')
+            // {uri: item.image.src}
           }>
           {props.children}
         </ImageBackground>
-        <Text style={{fontSize: 15, padding: 5}}>{category?.name}</Text>
+        {/* <Text style={{fontSize: 15, padding: 5}}>{category?.name}</Text> */}
       </TouchableOpacity>
+      {null}
     </View>
   );
 }
+/*
+attributes: Array(2)
+0: {id: 3, name: "Genişlik", option: "20mm"}
+1: {id: 2, name: "Uzunluk", option: "25 M"}
+length: 2
+__proto__: Array(0)
+backordered: false
+backorders: "no"
+backorders_allowed: false
+date_created: "2021-03-18T11:55:40"
+date_created_gmt: "2021-03-18T08:55:40"
+date_modified: "2021-04-09T11:00:15"
+date_modified_gmt: "2021-04-09T08:00:15"
+date_on_sale_from: null
+date_on_sale_from_gmt: null
+date_on_sale_to: null
+date_on_sale_to_gmt: null
+description: ""
+dimensions: {length: "", width: "", height: ""}
+download_expiry: -1
+download_limit: -1
+downloadable: false
+downloads: []
+id: 4468
+image: {id: 4512, date_created: "2021-03-18T15:53:49", date_created_gmt: "2021-03-18T09:53:49", date_modified: "2021-03-18T15:53:49", date_modified_gmt: "2021-03-18T09:53:49", …}
+manage_stock: false
+menu_order: 9
+meta_data: [{…}]
+on_sale: false
+permalink: "https://habby.store/urun/habby-dokuma-lastik-beyaz/?attribute_pa_genislik=20mm-2&attribute_pa_uzunluk=25-m"
+price: "0"
+purchasable: false
+regular_price: "0"
+sale_price: ""
+shipping_class: ""
+shipping_class_id: 0
+sku: "8681425568973"
+status: "publish"
+stock_quantity: null
+stock_status: "instock"
+tax_class: ""
+tax_status: "taxable"
+virtual: false
+weight: ""
+woo_variation_gallery_images: (5) [{…}, {…}, {…}, {…}, {…}]
+*/
+
 export function ProductsCard({item, navigation, route}) {
   console.log('🚀 ~ file: Cards.js ~ line 79 ~ ProductsCard ~ item', item);
   function ratingCompleted(rating) {
@@ -80,7 +121,7 @@ export function ProductsCard({item, navigation, route}) {
   }
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Details', {item: item})}>
+      onPress={() => navigation.navigate('Details', {id: item.id})}>
       {!item?.images[0]?.src > 0 ? (
         <ActivityRoller />
       ) : (

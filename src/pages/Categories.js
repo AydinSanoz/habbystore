@@ -29,6 +29,10 @@ export function Categories(props) {
         );
         props.navigation.goBack();
       } else {
+        console.log(
+          '🚀 ~ file: Categories.js ~ line 33 ~ fetch ~ res',
+          res.data,
+        );
         setCategories(res.data);
         originalList = res.data;
         setIsLoading(false);

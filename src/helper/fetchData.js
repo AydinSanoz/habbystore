@@ -22,7 +22,6 @@ export async function fetch(route, params) {
         ...params,
       },
     });
-    console.log('res', data);
     return data;
   } catch ({response}) {
     console.log('err', response);

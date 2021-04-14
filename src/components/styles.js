@@ -39,9 +39,7 @@ export const pCard = StyleSheet.create({
     alignItems: 'flex-start',
   },
   textContent: {},
-  title: {
-    textTransform: 'capitalize',
-  },
+  title: {},
   priceContent: {
     flexDirection: 'row',
     marginTop: 5,
@@ -52,9 +50,7 @@ export const pCard = StyleSheet.create({
     fontSize: 12,
     textDecorationLine: 'line-through',
   },
-  price: {
-    fontWeight: 'bold',
-  },
+  price: {},
 
   ratingContent: {
     flexDirection: 'row',
@@ -82,6 +78,8 @@ export const cCard = StyleSheet.create({
     borderColor: '#80deea',
     borderBottomWidth: 1,
     margin: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   img: {
     resizeMode: 'contain',
@@ -152,4 +150,8 @@ export const title = StyleSheet.create({
     fontSize: 20,
     backgroundColor: '#5d99c690',
   },
+});
+export const texts = StyleSheet.create({
+  text1: {fontSize: 20, fontWeight: 'bold'},
+  text2: {fontSize: 15},
 });

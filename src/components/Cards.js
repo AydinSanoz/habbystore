@@ -94,7 +94,7 @@ export function ProductsCard({item, navigation, route}) {
               {/* <Text style={pCard.regularPrice}>{item.regular_price} TL</Text>
               <Text style={pCard.price}>{item.sale_price} TL</Text> */}
 
-              <HTMLView style={pCard.price}>{item.price_html} TL</HTMLView>
+              <HTMLView style={pCard.price}>{item.price_html}</HTMLView>
             </View>
             <View style={pCard.ratingContent}>
               {!item.review_count > 0 && (
@@ -126,8 +126,10 @@ export function ProductsCard({item, navigation, route}) {
             </View>
             {/* </View> */}
             <View style={pCard.bottom}>
-              {item.stock_status === 'inStock' ? (
-                <Text style={pCard.quantity}>Stock:{item.stock_quantity}</Text>
+              {item.stock_status !== 'inStock' ? (
+                <Text style={pCard.quantity}>
+                  Quantity:{item.stock_quantity}
+                </Text>
               ) : (
                 <Text style={pCard.stock}>Not in Stock</Text>
               )}

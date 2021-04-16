@@ -31,3 +31,11 @@ export const video = StyleSheet.create({
     margin: 10,
   },
 });
+
+export const details = StyleSheet.create({
+  attributeContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+    justifyContent: 'space-between',
+  },
+});

@@ -9,7 +9,7 @@ export function Home(props) {
   return (
     <Layout {...props}>
       <SearchBar placeholder="Enter a search key" {...props} />
-      <ScrollView horizontal>
+      <ScrollView>
         <AboutUs {...props} />
         <Motto {...props} />
       </ScrollView>

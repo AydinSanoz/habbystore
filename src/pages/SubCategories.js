@@ -20,6 +20,10 @@ export function SubCategories(props) {
       parent: id,
       per_page: 99,
     }).then(res => {
+      console.log(
+        '🚀 ~ file: SubCategories.js ~ line 24 ~ useEffect ~ res',
+        res,
+      );
       if (res.err) {
         console.log(
           '🚀 ~ file: SubCategories.js ~ line 28 ~ SubCategories ~ res',
@@ -40,7 +44,6 @@ export function SubCategories(props) {
         //   {text: 'OK', onPress: () => props.navigation.goBack()},
         // ]);
       } else {
-        console.log(res.data.length);
         setCategories(res.data);
         setIsLoading(false);
         originalList = res.data;

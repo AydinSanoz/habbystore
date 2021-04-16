@@ -21,6 +21,7 @@ export function Products(props) {
       per_page: 99,
       order: 'asc',
     }).then(res => {
+      console.log('🚀 ~ file: Products.js ~ line 25 ~ useEffect ~ res', res);
       if (res.err) {
         console.log(res);
         Alert.alert('WELCOME HABBY-STORE', res.err, [
@@ -37,10 +38,6 @@ export function Products(props) {
           },
         ]);
       } else {
-        console.log(
-          '🚀 ~ file: Products.js ~ line 30 ~ Products ~ res',
-          res.data,
-        );
         setProduct(res.data);
         originalList = res.data;
         setIsLoading(false);

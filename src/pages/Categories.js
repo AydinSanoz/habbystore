@@ -18,6 +18,8 @@ export function Categories(props) {
 
   useEffect(() => {
     fetch(wcCategory.route, {parent: parent}).then(res => {
+      console.log('🚀 ~ file: Categories.js ~ line 21 ~ fetch ~ res', res);
+
       if (res.err) {
         console.log('err', res.err);
       }

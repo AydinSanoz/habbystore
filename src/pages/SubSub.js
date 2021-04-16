@@ -20,6 +20,7 @@ export function SubSub(props) {
       parent: id,
       per_page: 90,
     }).then(res => {
+      console.log('🚀 ~ file: SubSub.js ~ line 24 ~ useEffect ~ res', res);
       if (res.err) {
         console.log(
           '🚀 ~ file: SubCategories.js ~ line 28 ~ SubCategories ~ res',

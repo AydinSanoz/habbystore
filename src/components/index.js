@@ -10,4 +10,5 @@ export * from './Layout';
 export * from './ActivityRoller';
 export * from './ModalComp';
 export * from './Texts';
+export * from './VaryantImg';
 export * from './TimelineImg';

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {
   HeaderText,
@@ -7,6 +7,7 @@ import {
   Text1,
   TimelineImg,
   VaryantImg,
+  PickerComp,
 } from '../components';
 import HTMLView from 'react-native-htmlview';
 import Layout from '../components/Layout';
@@ -19,25 +20,12 @@ export function Details(props) {
   const [selectedUzunluk, setSelectedUzunluk] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [isVaryantVisible, setIsVaryantVisible] = useState(false);
-  const [hasOption, setHasOption] = useState(true);
-  // const [item, setItem] = useState();
+  const [hasOption, setHasOption] = useState(false);
   const [varyant, setVaryant] = useState([]);
   const {id, item} = props.route.params;
   const images = item?.images;
 
   console.log('🚀 ~ file: Details.js ~ line 26 ~ Details ~ item', item);
-  // useEffect(() => {
-  //   fetch(`/products/${id}`).then(res => {
-  //     console.log('res', res.data);
-  //     setItem(res.data);
-  //     res.data.attributes.length > 0 && setHasOption(true);
-  //   });
-  // }, [id]);
-
-  // useEffect(() => {
-  //   getVaryant();
-  //   item.attributes.length > 0 && setHasOption(true);
-  // }, []);
 
   function getVaryant() {
     fetch(`/products/${id}/variations`).then(({data}) => {
@@ -73,53 +61,48 @@ export function Details(props) {
         ) : (
           <VaryantImg image={varyant[0]?.image} {...props} />
         )}
-        {hasOption && (
+        {item.attributes.length > 0 && (
           <View style={details.attributeContainer}>
-            <View>
+            <View style={details.attributeContent}>
               <IconButton
-                name="expand-more"
+                // name="expand-more"
                 onPress={() => setIsVisible(!isVisible)}
                 {...props}>
-                <TouchableOpacity>
-                  <Text1>Genişlik</Text1>
-                </TouchableOpacity>
+                <Text1>Genişlik</Text1>
               </IconButton>
               {isVisible && (
-                <Picker
-                  style={{marginTop: -80, zIndex: -1}}
+                <PickerComp
                   selectedValue={selectedGenislik}
-                  onValueChange={(val, i) => setSelectedGenislik(val)}>
-                  {item.attributes[genislikIndex].options.map((option, i) => (
-                    <Picker.Item key={i} label={option} value={option} />
-                  ))}
-                </Picker>
+                  onValueChange={(val, i) => setSelectedGenislik(val)}
+                  attributes={item.attributes}
+                  attributeIndex={genislikIndex}
+                />
               )}
             </View>
-            <IconButton
-              name="menu"
-              onPress={getVaryant}
-              onLongPress={() => setIsVaryantVisible(!isVaryantVisible)}
-            />
-            <View>
+            <View style={details.attributeContent}>
               <IconButton
-                name="expand-more"
+                alignSelf="center"
+                name="check"
+                onPress={getVaryant}
+                onLongPress={() => setIsVaryantVisible(!isVaryantVisible)}
+              />
+            </View>
+            <View style={details.attributeContent}>
+              <IconButton
+                alignSelf="flex-end"
+                // name="expand-more"
                 onPress={() => setIsVisible(!isVisible)}
+                onLongPress={() => alert('long pressed')}
                 {...props}>
-                <TouchableOpacity>
-                  <Text1>Uzunluk</Text1>
-                </TouchableOpacity>
+                <Text1>Uzunluk</Text1>
               </IconButton>
               {isVisible && (
-                <Picker
-                  style={{marginTop: -80, zIndex: -1}}
+                <PickerComp
                   selectedValue={selectedUzunluk}
-                  onValueChange={(attributeOption, i) =>
-                    setSelectedUzunluk(attributeOption)
-                  }>
-                  {item.attributes[uzunlukIndex].options.map((option, i) => (
-                    <Picker.Item key={i} label={option} value={option} />
-                  ))}
-                </Picker>
+                  onValueChange={(val, i) => setSelectedUzunluk(val)}
+                  attributes={item.attributes}
+                  attributeIndex={uzunlukIndex}
+                />
               )}
             </View>
           </View>

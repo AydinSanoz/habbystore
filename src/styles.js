@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 
 export const layout = StyleSheet.create({
   container: {
@@ -35,7 +35,16 @@ export const video = StyleSheet.create({
 export const details = StyleSheet.create({
   attributeContainer: {
     flexDirection: 'row',
+    borderBottomColor: '#00000040',
     marginTop: 10,
-    justifyContent: 'space-between',
+  },
+  attributeContent: {
+    flex: 1,
+  },
+  picker: {
+    margin: Platform.OS === 'ios' ? -75 : null,
+    // marginBottom: Platform.OS === 'ios' ? -75 : null,
+    padding: Platform.OS === 'ios' ? 20 : null,
+    zIndex: -10,
   },
 });

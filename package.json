@@ -11,7 +11,6 @@
     "svgr": "npx @svgr/cli --icon --native --replace-attr-values '#fff=currentColor' -d ./src/components/Icons ./src/assets/svgIcons "
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.15.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.15.0",
     "@react-navigation/bottom-tabs": "^5.11.8",
@@ -32,6 +31,7 @@
     "react-native-screens": "^3.0.0",
     "react-native-slider": "^0.11.0",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-video": "^5.1.1",
     "react-redux": "^7.2.3",
     "redux": "^4.0.5"
   },

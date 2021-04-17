@@ -138,7 +138,7 @@ export const header = StyleSheet.create({
 
     color: '#00000090',
     backgroundColor: '#fafafa',
-    padding: 5,
+    padding: 10,
   },
 });
 export const title = StyleSheet.create({

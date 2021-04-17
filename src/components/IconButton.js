@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Button, TouchableOpacity} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export function IconButton(props) {
   return (
     <TouchableOpacity
-      style={{alignSelf: 'center', flexDirection: 'row', alignItems: 'center'}}
+      style={[button.container, {alignSelf: props.alignSelf}]}
       onPress={props.onPress}
       onLongPress={props.onLongPress}>
       <Icon
@@ -18,3 +18,10 @@ export function IconButton(props) {
     </TouchableOpacity>
   );
 }
+
+const button = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

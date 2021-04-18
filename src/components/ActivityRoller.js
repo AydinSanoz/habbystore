@@ -1,10 +1,6 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator, Dimensions} from 'react-native';
 
 export default function ActivityRoller() {
-  return (
-    <View>
-      <ActivityIndicator size="large" color="#c3fdff" />
-    </View>
-  );
+  return <ActivityIndicator size="large" color="#12adbc" style={{flex: 1}} />;
 }

@@ -102,9 +102,9 @@ export const dCard = StyleSheet.create({
 export const category = StyleSheet.create({
   container: {
     borderBottomColor: '#c3fdff',
-    borderBottomWidth: 2,
     paddingBottom: 10,
-    margin: 10,
+    padding: 10,
+    flex: 1,
   },
 });
 export const imageCard = StyleSheet.create({

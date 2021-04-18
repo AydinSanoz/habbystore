@@ -25,6 +25,7 @@ export const SearchBar = props => {
       <Icon.Button
         name="search"
         size={30}
+        onPressIn={e => console.log(e)}
         color="#000"
         backgroundColor="#fafafa"
         onPress={() => setIsVisible(!isVisible)}
@@ -35,6 +36,9 @@ export const SearchBar = props => {
           onChangeText={handleChange}
           placeholder={props.placeholder}
           placeholderTextColor={props.color}
+          onKeyPress={e => console.log(e)}
+          auto
+          autoFocus
         />
       ) : (
         props.children

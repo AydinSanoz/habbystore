@@ -88,6 +88,7 @@ export function Categories(props) {
           <ActivityRoller />
         ) : (
           <FlatList
+            style={{flex: 1}}
             data={categories}
             renderItem={renderItem}
             keyExtractor={(_, index) => index.toString()}

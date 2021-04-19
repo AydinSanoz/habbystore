@@ -20,12 +20,13 @@ export function Products(props) {
       category: id,
       per_page: 99,
       order: 'asc',
+      search: value,
     }).then(res => {
       console.log('🚀 ~ file: Products.js ~ line 25 ~ useEffect ~ res', res);
       if (res.err) {
         console.log(res);
         Alert.alert('WELCOME HABBY-STORE', res.err, [
-          {text: 'OK', onPress: () => props.navigation.goBack()},
+          {text: 'OK', onPress: () => props.navigation.navigate('Categories')},
         ]);
       }
       if (res.data.length === 0) {
@@ -33,7 +34,7 @@ export function Products(props) {
           {
             text: 'OK',
             onPress: () => {
-              props.navigation.goBack();
+              props.navigation.navigate('Categories');
             },
           },
         ]);
@@ -46,16 +47,16 @@ export function Products(props) {
     return () => {
       <Products />;
     };
-  }, [id, props.navigation]);
+  }, [id, props.navigation, value]);
 
-  useEffect(() => {
-    const filteredData = originalList?.filter(data => {
-      const inputVal = value?.toLowerCase().replace(/\s/g, '');
-      const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
-      return dataName?.indexOf(inputVal) > -1;
-    });
-    setProduct(filteredData);
-  }, [value]);
+  // useEffect(() => {
+  //   const filteredData = originalList?.filter(data => {
+  //     const inputVal = value?.toLowerCase().replace(/\s/g, '');
+  //     const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
+  //     return dataName?.indexOf(inputVal) > -1;
+  //   });
+  //   setProduct(filteredData);
+  // }, [value]);
 
   const renderItem = ({item}) => <ProductsCard item={item} {...props} />;
 

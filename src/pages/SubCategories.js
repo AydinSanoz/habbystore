@@ -12,6 +12,7 @@ let originalList = [];
 export function SubCategories(props) {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
 
@@ -19,6 +20,7 @@ export function SubCategories(props) {
     fetch(wcCategory.route, {
       parent: id,
       per_page: 99,
+      search: search,
     }).then(res => {
       console.log(
         '🚀 ~ file: SubCategories.js ~ line 24 ~ useEffect ~ res',
@@ -30,7 +32,7 @@ export function SubCategories(props) {
           res.data,
         );
         Alert.alert('WELCOME HABBY-STORE', res.err, [
-          {text: 'OK', onPress: () => props.navigation.goBack()},
+          {text: 'OK', onPress: () => props.navigation.navigate('Categories')},
         ]);
       }
       if (res.data.length === 0) {
@@ -41,7 +43,7 @@ export function SubCategories(props) {
           count: count,
         });
         // Alert.alert('WELCOME HABBY STORE', 'Select other category', [
-        //   {text: 'OK', onPress: () => props.navigation.goBack()},
+        //   {text: 'OK', onPress: () => props.navigation.navigate('Categories')},
         // ]);
       } else {
         setCategories(res.data);
@@ -52,16 +54,16 @@ export function SubCategories(props) {
     return () => {
       <SubCategories />;
     };
-  }, [count, id, name, props.navigation]);
+  }, [count, id, name, props.navigation, search]);
 
-  useEffect(() => {
-    const filteredData = originalList?.filter(data => {
-      const inputVal = value.toLowerCase().replace(/\s/g, '');
-      const name = data.name.toLowerCase().replace(/\s/g, '');
-      return name.indexOf(inputVal) > -1;
-    });
-    setCategories(filteredData);
-  }, [value]);
+  // useEffect(() => {
+  //   const filteredData = originalList?.filter(data => {
+  //     const inputVal = value.toLowerCase().replace(/\s/g, '');
+  //     const name = data.name.toLowerCase().replace(/\s/g, '');
+  //     return name.indexOf(inputVal) > -1;
+  //   });
+  //   setCategories(filteredData);
+  // }, [value]);
 
   const renderItem = ({item}) => (
     <ListCard
@@ -76,9 +78,13 @@ export function SubCategories(props) {
       {...props}
     />
   );
+
+  function filter() {
+    setSearch(value);
+  }
   return (
     <Layout>
-      <SearchBar placeholder="Enter search key" {...props}>
+      <SearchBar placeholder="Enter search key" onPress={filter} {...props}>
         <IconButton
           name="keyboard-arrow-left"
           onPress={() => props.navigation.goBack()}

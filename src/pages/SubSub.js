@@ -12,13 +12,15 @@ let originalList = [];
 export function SubSub(props) {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
 
   useEffect(() => {
     fetch(wcCategory.route, {
       parent: id,
-      per_page: 90,
+      per_page: 99,
+      search: search,
     }).then(res => {
       console.log('🚀 ~ file: SubSub.js ~ line 24 ~ useEffect ~ res', res);
       if (res.err) {
@@ -26,9 +28,8 @@ export function SubSub(props) {
           '🚀 ~ file: SubCategories.js ~ line 28 ~ SubCategories ~ res',
           res.data,
         );
-
         Alert.alert('WELCOME HABBY-STORE', res.err, [
-          {text: 'OK', onPress: () => props.navigation.navigate('Home')},
+          {text: 'OK', onPress: () => props.navigation.navigate('Categories')},
         ]);
       }
       if (res.data.length === 0) {
@@ -47,16 +48,16 @@ export function SubSub(props) {
     return () => {
       <SubSub />;
     };
-  }, [count, id, name, props.navigation]);
+  }, [count, id, name, props.navigation, search]);
 
-  useEffect(() => {
-    const filteredData = originalList?.filter(data => {
-      const inputVal = value.toLowerCase().replace(/\s/g, '');
-      const name = data.name.toLowerCase().replace(/\s/g, '');
-      return name.indexOf(inputVal) > -1;
-    });
-    setCategories(filteredData);
-  }, [value]);
+  // useEffect(() => {
+  //   const filteredData = originalList?.filter(data => {
+  //     const inputVal = value.toLowerCase().replace(/\s/g, '');
+  //     const name = data.name.toLowerCase().replace(/\s/g, '');
+  //     return name.indexOf(inputVal) > -1;
+  //   });
+  //   setCategories(filteredData);
+  // }, [value]);
 
   const renderItem = ({item}) => (
     <ListCard
@@ -71,9 +72,12 @@ export function SubSub(props) {
       {...props}
     />
   );
+  function filter() {
+    setSearch(value);
+  }
   return (
     <Layout>
-      <SearchBar placeholder="Enter search key" {...props}>
+      <SearchBar placeholder="Enter search key" onPress={filter} {...props}>
         <IconButton
           name="keyboard-arrow-left"
           onPress={() => props.navigation.goBack()}

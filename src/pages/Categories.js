@@ -7,17 +7,29 @@ import {fetch} from '../helper/fetchData';
 import {wcCategory} from '../constants';
 import Layout from '../components/Layout';
 import ActivityRoller from '../components/ActivityRoller';
+import {
+  siteName,
+  apiBaseUrl,
+  categories,
+  consumer_key,
+  consumer_secret,
+} from '@env';
 
 let originalList = [];
 
 export function Categories(props) {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   const {value, count, name, parent} = useSelector(state => state.search);
 
   useEffect(() => {
-    fetch(wcCategory.route, {parent: parent}).then(res => {
+    fetch(wcCategory.route, {
+      parent: parent,
+      per_page: 99,
+      search: search,
+    }).then(res => {
       console.log('🚀 ~ file: Categories.js ~ line 21 ~ fetch ~ res', res);
 
       if (res.err) {
@@ -27,14 +39,15 @@ export function Categories(props) {
         Alert.alert(
           'WELCOME HABBY STORE',
           `Try again Please${res.data.length}`,
-          [{text: 'OK', onPress: () => props.navigation.goBack()}],
+          [
+            {
+              text: 'OK',
+              onPress: () => props.navigation.navigate('Categories'),
+            },
+          ],
         );
-        props.navigation.goBack();
       } else {
-        console.log(
-          '🚀 ~ file: Categories.js ~ line 33 ~ fetch ~ res',
-          res.data,
-        );
+        console.log('🚀 ~ file: Categories.js ~ line 33 ~ fetch ~ res', res);
         setCategories(res.data);
         originalList = res.data;
         setIsLoading(false);
@@ -43,16 +56,20 @@ export function Categories(props) {
     return () => {
       <Categories />;
     };
-  }, [parent, props.navigation]);
+  }, [parent, props.navigation, search]);
 
-  useEffect(() => {
-    const filteredData = originalList.filter(data => {
-      const inputVal = value.toLowerCase().replace(/\s/g, '');
-      const name = data.name.toLowerCase().replace(/\s/g, '');
-      return name.indexOf(inputVal) > -1;
-    });
-    setCategories(filteredData);
-  }, [value]);
+  function filter() {
+    setSearch(value);
+  }
+
+  // useEffect(() => {
+  //   const filteredData = originalList.filter(data => {
+  //     const inputVal = value.toLowerCase().replace(/\s/g, '');
+  //     const name = data.name.toLowerCase().replace(/\s/g, '');
+  //     return name.indexOf(inputVal) > -1;
+  //   });
+  //   setCategories(filteredData);
+  // }, [value]);
 
   const renderItem = ({item}) => {
     return (
@@ -72,7 +89,7 @@ export function Categories(props) {
 
   return (
     <Layout>
-      <SearchBar placeholder="Enter search key" {...props}>
+      <SearchBar placeholder="Enter search key" onPress={filter} {...props}>
         <IconButton
           name="keyboard-arrow-left"
           onPress={() => props.navigation.goBack()}

@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Alert, FlatList} from 'react-native';
+import {Alert, FlatList, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {ProductsCard, SearchBar, HeaderText, IconButton} from '.';
+import {ProductsCard, HeaderText} from '.';
 import {fetch} from '../helper/fetchData';
 import {wcProducts} from '../constants';
 import ActivityRoller from './ActivityRoller';
-import Layout from './Layout';
 
 let originalList = [];
 export function AllProducts(props) {
@@ -49,21 +48,21 @@ export function AllProducts(props) {
     return () => {
       <AllProducts />;
     };
-  }, [props.navigation, search, value]);
+  }, [props.navigation, search]);
 
-  // useEffect(() => {
-  //   const filteredData = originalList?.filter(data => {
-  //     const inputVal = value?.toLowerCase().replace(/\s/g, '');
-  //     const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
-  //     return dataName?.indexOf(inputVal) > -1;
-  //   });
-  //   setProduct(filteredData);
-  // }, [value]);
+  useEffect(() => {
+    const filteredData = originalList?.filter(data => {
+      const inputVal = value?.toLowerCase().replace(/\s/g, '');
+      const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
+      return dataName?.indexOf(inputVal) > -1;
+    });
+    setProduct(filteredData);
+  }, [value]);
 
   const renderItem = ({item}) => <ProductsCard item={item} {...props} />;
 
   return (
-    <Layout>
+    <View>
       <HeaderText>PRODUCTS</HeaderText>
       {isLoading ? (
         <ActivityRoller />
@@ -75,9 +74,10 @@ export function AllProducts(props) {
           keyExtractor={(_, index) => index.toString()}
         />
       )}
-    </Layout>
+    </View>
   );
 }
+
 /*
 attributes: (2) [{…}, {…}]
 average_rating: "0.00"

@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {Alert, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
-import {ProductsCard, SearchBar, HeaderText, IconButton} from '../components';
+import {Layout, ProductsCard} from '../components';
 import {fetch} from '../helper/fetchData';
 import {wcProducts} from '../constants';
 import ActivityRoller from '../components/ActivityRoller';
-import Layout from '../components/Layout';
 
 let originalList = [];
 export function Products(props) {
   const [product, setProduct] = useState([]);
+  const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   const {value} = useSelector(state => state.search);
@@ -20,7 +20,7 @@ export function Products(props) {
       category: id,
       per_page: 99,
       order: 'asc',
-      search: value,
+      search: search,
     }).then(res => {
       console.log('🚀 ~ file: Products.js ~ line 25 ~ useEffect ~ res', res);
       if (res.err) {
@@ -47,31 +47,23 @@ export function Products(props) {
     return () => {
       <Products />;
     };
-  }, [id, props.navigation, value]);
+  }, [id, props.navigation, search]);
 
-  // useEffect(() => {
-  //   const filteredData = originalList?.filter(data => {
-  //     const inputVal = value?.toLowerCase().replace(/\s/g, '');
-  //     const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
-  //     return dataName?.indexOf(inputVal) > -1;
-  //   });
-  //   setProduct(filteredData);
-  // }, [value]);
+  useEffect(() => {
+    const filteredData = originalList?.filter(data => {
+      const inputVal = value?.toLowerCase().replace(/\s/g, '');
+      const dataName = data?.name?.toLowerCase().replace(/\s/g, '');
+      return dataName?.indexOf(inputVal) > -1;
+    });
+    setProduct(filteredData);
+  }, [value]);
 
   const renderItem = ({item}) => <ProductsCard item={item} {...props} />;
-
+  function filter() {
+    setSearch(value);
+  }
   return (
-    <Layout>
-      <SearchBar placeholder="Enter search key" {...props}>
-        <IconButton
-          name="keyboard-arrow-left"
-          onPress={() => props?.navigation?.goBack()}
-          {...props}
-        />
-        <HeaderText>
-          {name} - {count}
-        </HeaderText>
-      </SearchBar>
+    <Layout backIcon header name={name} count={count} {...props}>
       {isLoading ? (
         <ActivityRoller />
       ) : (

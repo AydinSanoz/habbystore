@@ -10,6 +10,7 @@ import HTMLView from 'react-native-htmlview';
 import {Rating} from 'react-native-ratings';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ActivityRoller from './ActivityRoller';
+import {IconButton} from './IconButton';
 import {dCard, pCard, cCard, imageCard} from './styles';
 import {Text1, Text2} from './Texts';
 import TitleText from './TitleText';
@@ -94,6 +95,7 @@ export function ProductsCard({item, navigation, route}) {
                     // showRating
                   />
                   <Text>({item.rating_count})</Text>
+                  <IconButton name="heart-outline" />
                 </View>
               )}
               {item.has_options && (

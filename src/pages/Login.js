@@ -1,8 +1,6 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
-import {SearchBar} from '../components';
-import Layout from '../components/Layout';
-import {layout} from '../styles';
+import {Text} from 'react-native';
+import {Layout, SearchBar} from '../components';
 
 export function Login(props) {
   return (

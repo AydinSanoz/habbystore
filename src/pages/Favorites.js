@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {SearchBar} from '../components';
-import Layout from '../components/Layout';
+import {Layout, SearchBar} from '../components';
 
 export function Favorites(props) {
   return (

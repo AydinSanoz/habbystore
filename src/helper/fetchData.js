@@ -1,3 +1,4 @@
+import * as React from 'react';
 import axios from 'axios';
 
 const baseUrl = 'https://habby.store';
@@ -28,6 +29,7 @@ export async function fetch(route, params) {
     return response;
   }
 }
+export const Fetch = React.memo(fetch);
 /* 
 100 Informational codes indicating that the request initiated by the browser is continuing.
 200 Success codes returned when browser request was received, understood, and processed by the server.

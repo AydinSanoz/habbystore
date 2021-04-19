@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {View, FlatList, Alert} from 'react-native';
-import {ListCard, IconButton, HeaderText, SearchBar} from '../components';
-import {category} from '../components/styles';
-import {useSelector} from 'react-redux';
-import {fetch} from '../helper/fetchData';
-import {wcCategory} from '../constants';
-import Layout from '../components/Layout';
 import ActivityRoller from '../components/ActivityRoller';
+import {View, FlatList, Alert} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Layout, ListCard} from '../components';
+import {category} from '../components/styles';
+import {fetch} from '../helper/fetchData';
+import {useSelector} from 'react-redux';
+import {wcCategory} from '../constants';
 
 let originalList = [];
 export function SubSub(props) {
@@ -50,14 +49,14 @@ export function SubSub(props) {
     };
   }, [count, id, name, props.navigation, search]);
 
-  // useEffect(() => {
-  //   const filteredData = originalList?.filter(data => {
-  //     const inputVal = value.toLowerCase().replace(/\s/g, '');
-  //     const name = data.name.toLowerCase().replace(/\s/g, '');
-  //     return name.indexOf(inputVal) > -1;
-  //   });
-  //   setCategories(filteredData);
-  // }, [value]);
+  useEffect(() => {
+    const filteredData = originalList?.filter(data => {
+      const inputVal = value.toLowerCase().replace(/\s/g, '');
+      const name = data.name.toLowerCase().replace(/\s/g, '');
+      return name.indexOf(inputVal) > -1;
+    });
+    setCategories(filteredData);
+  }, [value]);
 
   const renderItem = ({item}) => (
     <ListCard
@@ -76,19 +75,7 @@ export function SubSub(props) {
     setSearch(value);
   }
   return (
-    <Layout>
-      <SearchBar placeholder="Enter search key" onPress={filter} {...props}>
-        <IconButton
-          name="keyboard-arrow-left"
-          onPress={() => props.navigation.goBack()}
-          {...props}
-        />
-        <HeaderText {...props}>
-          {name}
-          {count}
-        </HeaderText>
-      </SearchBar>
-
+    <Layout backIcon header name={name} count={count} {...props}>
       <View style={category.container}>
         {isLoading ? (
           <ActivityRoller />

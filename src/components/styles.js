@@ -129,13 +129,11 @@ export const header = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 10,
-    flex: 1,
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'left',
-
     color: '#00000090',
     backgroundColor: '#fafafa',
     padding: 10,
@@ -152,6 +150,20 @@ export const title = StyleSheet.create({
   },
 });
 export const texts = StyleSheet.create({
-  text1: {fontSize: 20, fontWeight: 'bold'},
-  text2: {fontSize: 15},
+  text1: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+  },
+  text2: {
+    fontSize: 15,
+  },
+});
+export const iconButton = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    zIndex: 20,
+    padding: 15,
+  },
 });

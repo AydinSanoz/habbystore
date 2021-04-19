@@ -1,18 +1,17 @@
+import {View, ScrollView, StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, StyleSheet, Alert} from 'react-native';
+import HTMLView from 'react-native-htmlview';
+import {fetch} from '../helper/fetchData';
+import {details} from '../styles';
 import {
+  Layout,
   HeaderText,
-  SearchBar,
   IconButton,
   Text1,
   TimelineImg,
   VaryantImg,
   PickerComp,
 } from '../components';
-import HTMLView from 'react-native-htmlview';
-import Layout from '../components/Layout';
-import {fetch} from '../helper/fetchData';
-import {details} from '../styles';
 
 export function Details(props) {
   const [selectedGenislik, setSelectedGenislik] = useState('');
@@ -59,14 +58,7 @@ export function Details(props) {
   }, [selectedGenislik, selectedUzunluk]);
 
   return (
-    <Layout>
-      <SearchBar placeholder="Enter search key" {...props}>
-        <IconButton
-          name="keyboard-arrow-left"
-          onPress={() => props.navigation.goBack()}
-          {...props}
-        />
-      </SearchBar>
+    <Layout backIcon={true} {...props}>
       <ScrollView>
         <HeaderText>{item?.name}</HeaderText>
         {!isVaryantVisible ? (
@@ -77,6 +69,9 @@ export function Details(props) {
             {...props}
           />
         )}
+        <IconButton name="heart-outline">
+          <Text1>Add To Fav</Text1>
+        </IconButton>
         {item.attributes.length > 0 && (
           <View style={details.attributeContainer}>
             <Text1 style={details.attributeContent}>Genişlik</Text1>

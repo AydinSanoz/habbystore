@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
 import {layout} from '../styles';
 
 export default function Layout(props) {
   return (
     <SafeAreaView style={layout.container}>
-      <View style={layout.container}>{props.children}</View>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : null}>
+        <View style={layout.container}>{props.children}</View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }

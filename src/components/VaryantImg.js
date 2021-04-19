@@ -8,9 +8,13 @@ export function VaryantImg(props) {
 
   return (
     <ScrollView horizontal>
-      <View>
-        <ImageCard source={props.image?.src} />
-      </View>
+      <ScrollView horizontal>
+        {props.images?.map((image, i) => (
+          <View key={i}>
+            <ImageCard source={image?.src} />
+          </View>
+        ))}
+      </ScrollView>
     </ScrollView>
   );
 }

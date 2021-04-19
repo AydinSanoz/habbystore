@@ -35,16 +35,11 @@ export const video = StyleSheet.create({
 export const details = StyleSheet.create({
   attributeContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     borderBottomColor: '#00000040',
-    marginTop: 10,
+    margin: 10,
   },
   attributeContent: {
     flex: 1,
-  },
-  picker: {
-    margin: Platform.OS === 'ios' ? -75 : null,
-    // marginBottom: Platform.OS === 'ios' ? -75 : null,
-    padding: Platform.OS === 'ios' ? 20 : null,
-    zIndex: -10,
   },
 });

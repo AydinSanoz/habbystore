@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 export function Favorites(props) {
   return (
     <Layout>
-      <SearchBar placeholder="Enter a search key" />
+      <SearchBar placeholder="Enter a search key" {...props} />
       <Text>Favorites</Text>
     </Layout>
   );

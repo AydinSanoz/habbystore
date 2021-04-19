@@ -55,6 +55,9 @@ export function Details(props) {
     if (selectedGenislik && selectedUzunluk) {
       getVaryant(selectedGenislik, selectedUzunluk);
     }
+    return () => {
+      <Details />;
+    };
   }, [selectedGenislik, selectedUzunluk]);
 
   return (

@@ -22,12 +22,10 @@ import {
   Login,
   Favorites,
   SubCategories,
+  SubSub,
 } from './pages';
-import {SubSub} from './pages/SubSub';
-
 const Stack = createStackNavigator();
-
-function StackRouter(props) {
+function StackCategory(props) {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
@@ -35,6 +33,17 @@ function StackRouter(props) {
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="SubCategories" component={SubCategories} />
       <Stack.Screen name="SubSub" component={SubSub} />
+      <Stack.Screen name="Products" component={Products} />
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
+}
+function StackHome(props) {
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Home">
+      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
@@ -70,8 +79,8 @@ function Store(props) {
         inactiveTintColor: 'gray',
         labelStyle: {fontSize: 13, fontWeight: '600', letterSpacing: 1.2},
       }}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Category" component={StackRouter} />
+      <Tab.Screen name="Home" component={StackHome} />
+      <Tab.Screen name="Category" component={StackCategory} />
       <Tab.Screen
         name="Favorites"
         component={Favorites}

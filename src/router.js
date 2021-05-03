@@ -1,13 +1,17 @@
 import * as React from 'react';
-import {NavigationContainer, DrawerActions} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DrawerActions,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import {ModalPortal} from 'react-native-modals';
-import {Provider} from 'react-redux';
-
+import {useSelector, Provider} from 'react-redux';
 import store from './redux/store';
+import {useColorScheme} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -23,25 +27,45 @@ import {
   Favorites,
   SubCategories,
   SubSub,
+  History,
 } from './pages';
+
 const Stack = createStackNavigator();
+
 function StackCategory(props) {
+  const {count, name} = useSelector(state => state.search);
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{headerShown: true}}
       initialRouteName="Categories">
-      <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen name="SubCategories" component={SubCategories} />
-      <Stack.Screen name="SubSub" component={SubSub} />
-      <Stack.Screen name="Products" component={Products} />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Categories"
+        component={Categories}
+        options={{title: 'Tüm Kategoriler'}}
+      />
+      <Stack.Screen
+        name="SubCategories"
+        component={SubCategories}
+        options={{title: name}}
+      />
+      <Stack.Screen name="SubSub" component={SubSub} options={{title: name}} />
+      <Stack.Screen
+        name="Products"
+        component={Products}
+        options={{title: name}}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{title: name}}
+      />
     </Stack.Navigator>
   );
 }
 function StackHome(props) {
   return (
     <Stack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={{headerShown: true}}
       initialRouteName="Home">
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Products" component={Products} />
@@ -53,6 +77,8 @@ function StackHome(props) {
 const Tab = createBottomTabNavigator();
 
 function Store(props) {
+  const {data} = useSelector(state => state.favorites);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -64,6 +90,8 @@ function Store(props) {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Category') {
             iconName = focused ? 'list' : 'list-outline';
+          } else if (route.name === 'History') {
+            iconName = focused ? 'heart' : 'heart';
           } else if (route.name === 'Favorites') {
             iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'Login') {
@@ -81,10 +109,11 @@ function Store(props) {
       }}>
       <Tab.Screen name="Home" component={StackHome} />
       <Tab.Screen name="Category" component={StackCategory} />
+      <Tab.Screen name="History" component={History} />
       <Tab.Screen
         name="Favorites"
         component={Favorites}
-        options={{tabBarBadge: 3}}
+        options={{tabBarBadge: data.length}}
       />
       <Tab.Screen name="Login" component={Login} />
     </Tab.Navigator>
@@ -110,14 +139,21 @@ const CustomDrawerContent = props => {
 };
 
 function Router(props) {
+  const scheme = useColorScheme();
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: 'rgb(255, 45, 85)',
+    },
+  };
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Drawer.Navigator initialRouteName="Store">
           <Drawer.Screen name="Store" component={Store} />
         </Drawer.Navigator>
       </NavigationContainer>
-      <ModalPortal />
     </Provider>
   );
 }

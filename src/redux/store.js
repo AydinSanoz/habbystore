@@ -1,8 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import reduxReducer from '../redux/reducers';
+import searchReducer from './searchReducer';
+import favoriteReducer from './favReducer';
 
 export default configureStore({
   reducer: {
-    search: reduxReducer,
+    search: searchReducer,
+    favorites: favoriteReducer,
   },
 });

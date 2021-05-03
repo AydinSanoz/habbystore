@@ -4,8 +4,9 @@ import React, {useState, useEffect} from 'react';
 import {category} from '../components/styles';
 import {ListCard, Layout} from '../components';
 import {fetch} from '../helper/fetchData';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {wcCategory} from '../constants';
+import {handleName} from '../redux/searchReducer';
 
 let originalList = [];
 
@@ -15,6 +16,7 @@ export function Categories(props) {
   const [search, setSearch] = useState('');
 
   const {value, count, name, parent} = useSelector(state => state.search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(wcCategory.route, {
@@ -64,16 +66,21 @@ export function Categories(props) {
   }, [value]);
 
   const renderItem = ({item}) => {
+    const {id, name, count} = {...item};
     return (
       <ListCard
-        {...item}
-        onPress={() =>
+        id={id}
+        name={name}
+        count={count}
+        onPress={() => {
           props.navigation.navigate('SubCategories', {
-            id: item.id,
-            name: item.name,
-            count: item.count,
-          })
-        }
+            id,
+            name,
+            count,
+          });
+          console.log(item.name);
+          dispatch(handleName(item.name));
+        }}
         {...props}
       />
     );

@@ -12,6 +12,8 @@ import {
   VaryantImg,
   PickerComp,
 } from '../components';
+import {useDispatch} from 'react-redux';
+import {addToFav} from '../redux/favReducer';
 
 export function Details(props) {
   const [selectedGenislik, setSelectedGenislik] = useState('');
@@ -19,6 +21,7 @@ export function Details(props) {
   const [isVaryantVisible, setIsVaryantVisible] = useState(false);
   const [varyant, setVaryant] = useState([]);
   const {item} = props.route.params;
+  const dispatch = useDispatch();
   const images = item?.images;
   const id = item.id;
   const uzunlukIndex = item?.attributes?.findIndex(
@@ -72,7 +75,9 @@ export function Details(props) {
             {...props}
           />
         )}
-        <IconButton name="heart-outline">
+        <IconButton
+          name="heart-outline"
+          onPress={() => dispatch(addToFav(item))}>
           <Text1>Add To Fav</Text1>
         </IconButton>
         {item.attributes.length > 0 && (

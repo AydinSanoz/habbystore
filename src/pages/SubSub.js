@@ -6,6 +6,8 @@ import {category} from '../components/styles';
 import {fetch} from '../helper/fetchData';
 import {useSelector} from 'react-redux';
 import {wcCategory} from '../constants';
+import {handleName} from '../redux/searchReducer';
+import {useDispatch} from 'react-redux';
 
 let originalList = [];
 export function SubSub(props) {
@@ -14,6 +16,7 @@ export function SubSub(props) {
   const [search, setSearch] = useState('');
   const {value} = useSelector(state => state.search);
   const {id, name, count} = props.route.params;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(wcCategory.route, {
@@ -61,13 +64,14 @@ export function SubSub(props) {
   const renderItem = ({item}) => (
     <ListCard
       {...item}
-      onPress={() =>
+      onPress={() => {
         props.navigation.navigate('Products', {
           id: item.id,
           name: item.name,
           count: item.count,
-        })
-      }
+        });
+        dispatch(handleName(item.name));
+      }}
       {...props}
     />
   );

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, TextInput} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {handleSearch} from '../redux/reducers';
+import {handleSearch} from '../redux/searchReducer';
 import {searchBarStyles} from './styles';
 import {IconButton} from './IconButton';
 import {HeaderText} from './HeaderText';
@@ -14,7 +14,6 @@ export const SearchBar = props => {
   function handleChange(val) {
     dispatch(handleSearch(val));
   }
-
   return (
     <View style={searchBarStyles.container}>
       <IconButton name="menu" onPress={() => props.navigation.toggleDrawer()} />
@@ -25,7 +24,6 @@ export const SearchBar = props => {
           handleChange('');
         }}
       />
-
       {isVisible ? (
         <>
           <TextInput
@@ -40,19 +38,7 @@ export const SearchBar = props => {
           <IconButton name="ios-checkmark-sharp" onPress={props.onPress} />
         </>
       ) : (
-        <>
-          {props.backIcon && (
-            <IconButton
-              name="chevron-back"
-              onPress={() => props.navigation.goBack()}
-            />
-          )}
-          {props.header && (
-            <HeaderText {...props}>
-              {props.name} - {props.count}
-            </HeaderText>
-          )}
-        </>
+        <></>
       )}
     </View>
   );

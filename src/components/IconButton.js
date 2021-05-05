@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {iconButton} from './styles';
 
-export function IconButton(props) {
+export function IconButton({children, ...props}) {
   return (
     <TouchableOpacity
       style={[iconButton.container, {alignSelf: props.alignSelf}]}
@@ -11,11 +11,11 @@ export function IconButton(props) {
       onLongPress={props.onLongPress}>
       <Icon
         name={props.name}
-        size={30}
+        size={25}
         color="#000"
         backgroundColor="transparent"
       />
-      {props.children}
+      {children}
     </TouchableOpacity>
   );
 }

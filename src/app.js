@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
-import Router from './router';
+import Navigator from './navigator';
 
 export default function app() {
-  return <Router />;
+  return <Navigator />;
 }

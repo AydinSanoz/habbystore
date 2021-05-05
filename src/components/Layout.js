@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import Hearth from '../components/icons/FormatListCheckbox';
+import {View, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
 import {layout} from '../styles';
 import {SearchBar} from './Searchbar';
+import {IconButton} from './IconButton';
 
-export function Layout(props) {
+export function Layout({children, ...props}) {
   return (
     <SafeAreaView style={layout.container}>
       <KeyboardAvoidingView
@@ -17,7 +13,7 @@ export function Layout(props) {
         behavior={Platform.OS === 'ios' ? 'padding' : null}>
         <View style={layout.container}>
           <SearchBar {...props} />
-          {props.children}
+          {children}
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

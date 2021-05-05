@@ -6,7 +6,7 @@ import {searchBarStyles} from './styles';
 import {IconButton} from './IconButton';
 import {HeaderText} from './HeaderText';
 
-export const SearchBar = props => {
+export const SearchBar = ({children, ...props}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const dispatch = useDispatch();
   const {value} = useSelector(state => state.search);
@@ -36,6 +36,7 @@ export const SearchBar = props => {
             autoFocus
           />
           <IconButton name="ios-checkmark-sharp" onPress={props.onPress} />
+          {children}
         </>
       ) : (
         <></>

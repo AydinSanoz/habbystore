@@ -5,7 +5,7 @@ const width = Dimensions.get('window').width;
 export const searchBarStyles = StyleSheet.create({
   container: {
     padding: Platform.OS == 'ios' ? 5 : 2,
-    backgroundColor: '#fafafa',
+    // backgroundColor: '#fafafa',
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#00000040',
@@ -16,11 +16,12 @@ export const searchBarStyles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
 export const pCard = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: '#c3fdff',
-    width: Dimensions.get('window').width * 0.95,
+    width: width * 0.95,
     margin: 10,
     padding: 10,
     flexDirection: 'row',
@@ -51,7 +52,6 @@ export const pCard = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   price: {},
-
   ratingContent: {
     flexDirection: 'row',
   },
@@ -66,13 +66,13 @@ export const pCard = StyleSheet.create({
   quantity: {
     flex: 1,
   },
-
   stock: {
     color: 'white',
     backgroundColor: 'red',
     fontWeight: 'bold',
   },
 });
+
 export const cCard = StyleSheet.create({
   container: {
     borderColor: '#80deea',
@@ -164,6 +164,6 @@ export const iconButton = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     zIndex: 20,
-    padding: 15,
+    padding: 10,
   },
 });

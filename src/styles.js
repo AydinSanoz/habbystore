@@ -1,4 +1,6 @@
 import {Dimensions, Platform, StyleSheet} from 'react-native';
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 export const layout = StyleSheet.create({
   container: {
@@ -25,8 +27,8 @@ export const login = StyleSheet.create({
 
 export const video = StyleSheet.create({
   content: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').width * 0.6,
+    width: width,
+    height: width * 0.6,
     position: 'relative',
     margin: 10,
   },

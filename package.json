@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "svgr": "npx @svgr/cli --icon --native --replace-attr-values '#fff=currentColor' -d ./src/components/Icons ./src/assets/svgIcons "
+    "svgr": "svgr './src/ıcons' -d './src/components/icons' --native --icon --svg-props 'stroke=#000, width=30,height=30'"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -21,7 +21,6 @@
     "axios": "^0.21.1",
     "react": "17.0.1",
     "react-native": "0.64.0",
-    "react-native-dotenv": "^2.5.5",
     "react-native-dropdown-picker": "^4.0.5",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-htmlview": "^0.16.0",
@@ -31,6 +30,7 @@
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.0.0",
     "react-native-slider": "^0.11.0",
+    "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^8.1.0",
     "react-native-video": "^5.1.1",
     "react-redux": "^7.2.3",

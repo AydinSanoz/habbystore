@@ -1,3 +1,10 @@
+import {dCard, pCard, cCard, imageCard} from './styles';
+import ActivityRoller from './ActivityRoller';
+import HTMLView from 'react-native-htmlview';
+import {Rating} from 'react-native-ratings';
+import {IconButton} from './IconButton';
+import {Text1, Text2} from './Texts';
+import TitleText from './TitleText';
 import React from 'react';
 import {
   Image,
@@ -6,14 +13,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import HTMLView from 'react-native-htmlview';
-import {Rating} from 'react-native-ratings';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import ActivityRoller from './ActivityRoller';
-import {IconButton} from './IconButton';
-import {dCard, pCard, cCard, imageCard} from './styles';
-import {Text1, Text2} from './Texts';
-import TitleText from './TitleText';
+import {useDispatch} from 'react-redux';
+import {addToFav} from '../redux/favReducer';
 
 export function ImageCard({source, text}) {
   const src = {uri: source};
@@ -25,7 +26,7 @@ export function ImageCard({source, text}) {
   );
 }
 export function ListCard(props) {
-  const {id, name, count, parent, navigation, route} = props;
+  const {name, count} = props;
 
   return (
     <View>
@@ -62,7 +63,8 @@ export function ProductsCard({item, navigation, route}) {
   function ratingCompleted(rating) {
     console.log('Rating is: ' + rating);
   }
-  const image = item.images[0];
+  const image = item?.images[0];
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Details', {item: item})}>
@@ -71,7 +73,6 @@ export function ProductsCard({item, navigation, route}) {
       ) : (
         <View style={pCard.container}>
           <Image style={pCard.img} source={{uri: image?.src}} />
-
           <View style={pCard.textContainer}>
             {/* <View style={pCard.textContent}> */}
             <Text style={pCard.title}>{item.name}</Text>
@@ -95,20 +96,13 @@ export function ProductsCard({item, navigation, route}) {
                     // showRating
                   />
                   <Text>({item.rating_count})</Text>
-                  <IconButton name="heart-outline" />
+                  <IconButton
+                    name="heart-outline"
+                    onPress={() => dispatch(addToFav(item))}
+                  />
                 </View>
               )}
-              {item.has_options && (
-                <Icon.Button
-                  name="menu"
-                  size={20}
-                  color="red"
-                  borderRadius={99}
-                  // backgroundColor="#ddd"
-                  backgroundColor="transparent"
-                  onPress={() => alert('hasOption')}
-                />
-              )}
+              {!item.has_options && <IconButton name="menu" />}
             </View>
             {/* </View> */}
             <View style={pCard.bottom}>

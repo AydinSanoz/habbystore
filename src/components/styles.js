@@ -2,6 +2,16 @@ import {Dimensions, StyleSheet, Platform} from 'react-native';
 
 const width = Dimensions.get('window').width;
 
+export const input = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    backgroundColor: '#00000010',
+  },
+});
+
 export const searchBarStyles = StyleSheet.create({
   container: {
     padding: Platform.OS == 'ios' ? 5 : 2,
@@ -157,6 +167,9 @@ export const texts = StyleSheet.create({
   },
   text2: {
     fontSize: 15,
+  },
+  error: {
+    color: 'red',
   },
 });
 export const iconButton = StyleSheet.create({

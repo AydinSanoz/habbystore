@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
-import {Favorites, History, Login, Profile} from './pages';
+import {Favorites, History, Profile} from './pages';
 import {StackCategory, StackHome} from './stacknavigator';
 
 export default function Store(props) {

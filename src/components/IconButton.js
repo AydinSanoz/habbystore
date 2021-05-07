@@ -1,12 +1,12 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {iconButton} from './styles';
 
 export function IconButton({children, ...props}) {
   return (
     <TouchableOpacity
-      style={[iconButton.container, {alignSelf: props.alignSelf}]}
+      style={[iconButton.container, {flex: props.flex}]}
       onPress={props.onPress}
       onLongPress={props.onLongPress}>
       <Icon

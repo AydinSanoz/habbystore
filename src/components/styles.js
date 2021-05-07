@@ -22,7 +22,7 @@ export const searchBarStyles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    flex: 1,
+    flex: 9,
     fontSize: 18,
   },
 });
@@ -179,4 +179,20 @@ export const iconButton = StyleSheet.create({
     zIndex: 20,
     padding: 10,
   },
+});
+export const badge = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    top: 10,
+    right: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    backgroundColor: 'red',
+    zIndex: 100,
+  },
+  text: {color: '#fff', fontWeight: 'bold'},
 });

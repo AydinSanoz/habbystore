@@ -4,13 +4,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {handleSearch} from '../redux/searchReducer';
 import {searchBarStyles} from './styles';
 import {IconButton} from './IconButton';
-import {HeaderText} from './HeaderText';
+import Badge from './Badge';
 
 export const SearchBar = ({children, ...props}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const dispatch = useDispatch();
   const {value} = useSelector(state => state.search);
-
+  const {data} = useSelector(state => state.favorites);
   function handleChange(val) {
     dispatch(handleSearch(val));
   }
@@ -18,6 +18,7 @@ export const SearchBar = ({children, ...props}) => {
     <View style={searchBarStyles.container}>
       <IconButton name="menu" onPress={() => props.navigation.toggleDrawer()} />
       <IconButton
+        flex={1}
         name="search"
         onPress={() => {
           setIsVisible(!isVisible);
@@ -39,7 +40,14 @@ export const SearchBar = ({children, ...props}) => {
           {children}
         </>
       ) : (
-        <></>
+        <>
+          <IconButton
+            name="basket"
+            alignSelf="flex-end"
+            onPress={() => props.navigation.navigate('Favorites')}
+          />
+          <Badge number={data.length} />
+        </>
       )}
     </View>
   );

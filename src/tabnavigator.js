@@ -3,7 +3,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
 import {Favorites, History, Profile} from './pages';
-import {StackCategory, StackHome} from './stacknavigator';
+import {StackCategory, StackHome, StackProfile} from './stacknavigator';
 
 export default function Store(props) {
   const {data} = useSelector(state => state.favorites);

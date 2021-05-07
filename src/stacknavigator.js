@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
+import {SignInForm, SignUpForm} from './components';
 import {
   Categories,
   Details,
@@ -50,6 +51,17 @@ export function StackHome(props) {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
+}
+
+export function StackProfile(props) {
+  return (
+    <Stack.Navigator
+      screenOptions={{headerShown: true}}
+      initialRouteName="SignIn">
+      <Stack.Screen name="SignIn" component={SignInForm} />
+      <Stack.Screen name="SignUp" component={SignUpForm} />
     </Stack.Navigator>
   );
 }

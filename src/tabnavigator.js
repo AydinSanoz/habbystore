@@ -2,7 +2,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
-import {Favorites, History, Login} from './pages';
+import {Favorites, History, Login, Profile} from './pages';
 import {StackCategory, StackHome} from './stacknavigator';
 
 export default function Store(props) {
@@ -24,7 +24,7 @@ export default function Store(props) {
             iconName = focused ? 'heart' : 'heart';
           } else if (route.name === 'Favorites') {
             iconName = focused ? 'heart' : 'heart-outline';
-          } else if (route.name === 'Login') {
+          } else if (route.name === 'Profile') {
             iconName = focused ? 'md-person' : 'md-person-outline';
           }
 
@@ -45,7 +45,7 @@ export default function Store(props) {
         component={Favorites}
         options={{tabBarBadge: data.length}}
       />
-      <Tab.Screen name="Login" component={Login} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }

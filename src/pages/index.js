@@ -5,5 +5,5 @@ export * from './SubSub';
 export * from './Products';
 export * from './Details';
 export * from './Favorites';
-export * from './Login';
+export * from './Profile';
 export * from './History';

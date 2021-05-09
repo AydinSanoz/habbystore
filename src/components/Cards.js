@@ -2,7 +2,6 @@ import {dCard, pCard, cCard, imageCard} from './styles';
 import ActivityRoller from './ActivityRoller';
 import HTMLView from 'react-native-htmlview';
 import {Rating} from 'react-native-ratings';
-import {IconButton} from './IconButton';
 import {Text1, Text2} from './Texts';
 import TitleText from './TitleText';
 import React from 'react';
@@ -15,6 +14,7 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {addToFav} from '../redux/favReducer';
+import {IconButton} from './IconButton';
 
 export function ImageCard({source, text}) {
   const src = {uri: source};

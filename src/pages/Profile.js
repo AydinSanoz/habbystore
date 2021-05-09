@@ -1,11 +1,12 @@
 import React from 'react';
+import {Button, Text, View} from 'react-native';
 import {Layout} from '../components';
 import Logo from '../components/Logo';
 import {StackProfile} from '../stacknavigator';
 
-export const Profile = ({children, props}) => {
+export const Profile = props => {
   return (
-    <Layout>
+    <Layout {...props}>
       <Logo />
       <StackProfile />
     </Layout>

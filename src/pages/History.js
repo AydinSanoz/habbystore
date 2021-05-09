@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {Layout, SearchBar} from '../components';
+import {Layout} from '../components';
 
 export function History(props) {
   return (
-    <Layout>
+    <Layout {...props}>
       <Text>History</Text>
     </Layout>
   );

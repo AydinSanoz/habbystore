@@ -86,7 +86,7 @@ export function SubCategories(props) {
     setSearch(value);
   }
   return (
-    <Layout backIcon header name={name} count={count} {...props}>
+    <Layout {...props}>
       <View style={category.container}>
         {isLoading ? (
           <ActivityRoller />

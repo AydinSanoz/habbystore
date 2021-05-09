@@ -186,13 +186,23 @@ export const badge = StyleSheet.create({
     width: 20,
     height: 20,
     top: 10,
-    right: 6,
+    right: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
     borderRadius: 20,
     backgroundColor: 'red',
     zIndex: 100,
   },
   text: {color: '#fff', fontWeight: 'bold'},
+});
+
+export const textSign = StyleSheet.create({
+  wrapper: {
+    margin: 20,
+  },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {},
 });

@@ -4,6 +4,8 @@ import {Button, View} from 'react-native';
 import {Error} from './error';
 import FieldInput from './FieldInput';
 import * as Yup from 'yup';
+import TextSign from './TextSign';
+import {IconButton} from './IconButton';
 
 export function SignInForm({children, ...props}) {
   const SignupSchema = Yup.object().shape({
@@ -19,7 +21,7 @@ export function SignInForm({children, ...props}) {
       validationSchema={SignupSchema}
       onSubmit={values => console.log(values)}>
       {({handleChange, handleBlur, handleSubmit, values, errors, touched}) => (
-        <View>
+        <View style={{backgroundColor: '#fff', flex: 1}}>
           <FieldInput
             placeholder="Email"
             onChangeText={handleChange('email')}
@@ -41,7 +43,8 @@ export function SignInForm({children, ...props}) {
             ) : null}
           </FieldInput>
 
-          <Button onPress={handleSubmit} title="SignIn" />
+          <Button onPress={handleSubmit} title="Login" />
+          <TextSign {...props} />
         </View>
       )}
     </Formik>

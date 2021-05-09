@@ -63,7 +63,7 @@ export function Products(props) {
     setSearch(value);
   }
   return (
-    <Layout backIcon header name={name} count={count} {...props}>
+    <Layout {...props}>
       {isLoading ? (
         <ActivityRoller />
       ) : (

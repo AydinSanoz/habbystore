@@ -64,7 +64,7 @@ export function Details(props) {
   }, [selectedGenislik, selectedUzunluk]);
 
   return (
-    <Layout backIcon={true} {...props}>
+    <Layout {...props}>
       <ScrollView>
         <HeaderText>{item?.name}</HeaderText>
         {!isVaryantVisible ? (
@@ -76,9 +76,9 @@ export function Details(props) {
           />
         )}
         <IconButton
-          name="heart-outline"
+          name="basket-outline"
           onPress={() => dispatch(addToFav(item))}>
-          <Text1>Add To Fav</Text1>
+          <Text1>Add To Card</Text1>
         </IconButton>
         {item.attributes.length > 0 && (
           <View style={details.attributeContainer}>

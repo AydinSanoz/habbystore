@@ -15,6 +15,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import {Basket, Categories} from './pages';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,12 +24,8 @@ const CustomDrawerContent = props => {
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
       <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.dispatch(DrawerActions.closeDrawer())}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
+        label="Login"
+        onPress={() => props.navigation.navigate('Profile')}
       />
     </DrawerContentScrollView>
   );
@@ -46,8 +43,19 @@ function Navigator(props) {
   return (
     <Provider store={store}>
       <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Drawer.Navigator initialRouteName="Store">
+        <Drawer.Navigator
+          drawerContent={props => <CustomDrawerContent {...props} />}
+          screenOptions={{}}
+          initialRouteName="Store"
+          drawerType="slide"
+          backBehavior={DrawerActions.toggleDrawer()}
+          drawerContentOptions={{
+            activeTintColor: 'tomato',
+            itemStyle: {marginVertical: 3},
+          }}>
           <Drawer.Screen name="Store" component={Store} />
+          <Drawer.Screen name="Categories" component={Categories} />
+          <Drawer.Screen name="MyBasket" component={Basket} />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {texts, title} from './styles';
+import {Text, View} from 'react-native';
+import {texts} from './styles';
 
 export function Text1({children}) {
   return <Text style={texts.text1}>{children}</Text>;

@@ -2,11 +2,11 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSelector} from 'react-redux';
-import {Favorites, History, Profile} from './pages';
-import {StackCategory, StackHome, StackProfile} from './stacknavigator';
+import {Basket, History, Profile} from './pages';
+import {StackCategory, StackHome} from './stacknavigator';
 
 export default function Store(props) {
-  const {data} = useSelector(state => state.favorites);
+  const {data} = useSelector(state => state.basket);
   const Tab = createBottomTabNavigator();
 
   return (
@@ -22,8 +22,8 @@ export default function Store(props) {
             iconName = focused ? 'list' : 'list-outline';
           } else if (route.name === 'History') {
             iconName = focused ? 'heart' : 'heart';
-          } else if (route.name === 'Favorites') {
-            iconName = focused ? 'heart' : 'heart-outline';
+          } else if (route.name === 'Card') {
+            iconName = focused ? 'basket' : 'basket-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'md-person' : 'md-person-outline';
           }
@@ -41,8 +41,8 @@ export default function Store(props) {
       <Tab.Screen name="Category" component={StackCategory} />
       <Tab.Screen name="History" component={History} />
       <Tab.Screen
-        name="Favorites"
-        component={Favorites}
+        name="Basket"
+        component={Basket}
         options={{tabBarBadge: data.length}}
       />
       <Tab.Screen name="Profile" component={Profile} />

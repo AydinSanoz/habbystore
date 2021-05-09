@@ -52,6 +52,7 @@ export function SignUpForm({children, ...props}) {
           </FieldInput>
 
           <Button onPress={handleSubmit} title="SignUp" />
+          {children}
         </View>
       )}
     </Formik>

@@ -10,7 +10,7 @@ export const SearchBar = ({children, ...props}) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const dispatch = useDispatch();
   const {value} = useSelector(state => state.search);
-  const {data} = useSelector(state => state.favorites);
+  const {data} = useSelector(state => state.basket);
   function handleChange(val) {
     dispatch(handleSearch(val));
   }
@@ -44,7 +44,7 @@ export const SearchBar = ({children, ...props}) => {
           <IconButton
             name="basket"
             alignSelf="flex-end"
-            onPress={() => props.navigation.navigate('Favorites')}
+            onPress={() => props.navigation.navigate('Card')}
           />
           <Badge number={data.length} />
         </>

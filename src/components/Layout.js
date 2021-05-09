@@ -1,9 +1,7 @@
 import React from 'react';
-import Hearth from '../components/icons/FormatListCheckbox';
 import {View, SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native';
 import {layout} from '../styles';
 import {SearchBar} from './Searchbar';
-import {IconButton} from './IconButton';
 
 export function Layout({children, ...props}) {
   return (

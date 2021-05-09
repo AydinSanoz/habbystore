@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const favoritesSlice = createSlice({
-  name: 'favorites',
+const basketSlice = createSlice({
+  name: 'basket',
   initialState: {
     data: [],
   },
@@ -13,5 +13,5 @@ const favoritesSlice = createSlice({
   },
 });
 
-export const {addToFav} = favoritesSlice.actions;
-export default favoritesSlice.reducer;
+export const {addToFav} = basketSlice.actions;
+export default basketSlice.reducer;

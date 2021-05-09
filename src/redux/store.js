@@ -5,6 +5,6 @@ import favoriteReducer from './favReducer';
 export default configureStore({
   reducer: {
     search: searchReducer,
-    favorites: favoriteReducer,
+    basket: favoriteReducer,
   },
 });

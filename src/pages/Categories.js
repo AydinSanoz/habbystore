@@ -87,7 +87,7 @@ export function Categories(props) {
   };
 
   return (
-    <Layout backIcon={true} header={true} name={name} count={count} {...props}>
+    <Layout {...props}>
       <View style={category.container}>
         {isLoading ? (
           <ActivityRoller />
